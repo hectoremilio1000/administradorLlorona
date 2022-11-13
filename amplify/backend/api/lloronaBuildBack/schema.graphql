@@ -1,0 +1,69 @@
+enum TIPOTOTAL {
+  SOBRANTE
+  FALTANTE
+  CUADRA
+}
+
+type Hotel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nombre: String
+  direccionCompleta: String
+  visitado: String
+  visitaRecepcionista: String
+  mandoClientes: String
+  fechaVisita: String
+}
+
+type StockEventInventario @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Float
+  fecha: String
+  inventarioID: ID! @index(name: "byInventario")
+}
+
+type Inventario @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  inventarioInicialFisico: Float
+  inventarioFinalFisico: Float
+  fechaInicioConteoFisico: String
+  fechaFinConteoFisico: String
+  productsID: ID! @index(name: "byProducts")
+  ventas: Float
+  compras: Float
+  total: Float
+  tipoTotal: TIPOTOTAL
+  StockEventInventarios: [StockEventInventario] @hasMany(indexName: "byInventario", fields: ["id"])
+}
+
+enum TypeInventory {
+  ADD
+  REMOVE
+  STOCKINITIAL
+}
+
+type StockEvents @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  type: TypeInventory
+  qty: Float
+  fecha: String
+  productsID: ID! @index(name: "byProducts")
+}
+
+type Products @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  StockEvents: [StockEvents] @hasMany(indexName: "byProducts", fields: ["id"])
+  Inventarios: [Inventario] @hasMany(indexName: "byProducts", fields: ["id"])
+}
+
+type FranquiciasModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nombreCompleto: String
+  email: String
+  whatsapp: String
+  ciudad: String
+  montoInversion: Int
+  porqueInvertir: String
+  dudas: String
+}
+ 
