@@ -13,7 +13,7 @@ function Producto() {
     try {
        await DataStore.save(
          new Products({
-           name
+           name:name
          })
        );
        window.location.reload(false);

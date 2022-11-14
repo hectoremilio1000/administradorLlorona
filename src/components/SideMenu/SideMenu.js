@@ -29,7 +29,7 @@ function SideMenu() {
     },
     {
       key: "inventario",
-      label: "Inventario",
+      label: "Inventario Productos",
     },
     {
       key: "crearhotel",
