@@ -8,21 +8,12 @@ const Tipototal = {
   "CUADRA": "CUADRA"
 };
 
-const TypeInventory = {
-  "ADD": "ADD",
-  "REMOVE": "REMOVE",
-  "STOCKINITIAL": "STOCKINITIAL"
-};
-
-const { Hotel, StockEventInventario, Inventario, StockEvents, Products, FranquiciasModel } = initSchema(schema);
+const { Hotel, StockEventInventario, Inventario, Products } = initSchema(schema);
 
 export {
   Hotel,
   StockEventInventario,
   Inventario,
-  StockEvents,
   Products,
-  FranquiciasModel,
-  Tipototal,
-  TypeInventory
+  Tipototal
 };

@@ -24,6 +24,14 @@ function SideMenu() {
       key: "inventario",
       label: "Inventario",
     },
+    {
+      key: "crearhotel",
+      label: "Crear Hotel",
+    },
+    {
+      key: "listahoteles",
+      label: "Lista Hoteles",
+    },
   ];
 
   return <Menu items={mainMenuItems} onClick={onClick} />;

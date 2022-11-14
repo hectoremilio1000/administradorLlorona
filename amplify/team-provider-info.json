@@ -1,19 +1,22 @@
 {
-  "invclone": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-lloronabuildback-invclone-40439-authRole",
-      "UnauthRoleArn": "arn:aws:iam::900765165512:role/amplify-lloronabuildback-invclone-40439-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::900765165512:role/amplify-lloronabuildback-invclone-40439-authRole",
+      "AuthRoleName": "amplify-amplify79ce20bcf2294-staging-225000-authRole",
+      "UnauthRoleArn": "arn:aws:iam::900765165512:role/amplify-amplify79ce20bcf2294-staging-225000-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::900765165512:role/amplify-amplify79ce20bcf2294-staging-225000-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-lloronabuildback-invclone-40439-deployment",
-      "UnauthRoleName": "amplify-lloronabuildback-invclone-40439-unauthRole",
-      "StackName": "amplify-lloronabuildback-invclone-40439",
-      "StackId": "arn:aws:cloudformation:us-east-2:900765165512:stack/amplify-lloronabuildback-invclone-40439/f824db20-5cbe-11ed-933b-0a6f34c54988",
-      "AmplifyAppId": "dd8mp4vcrt8rj"
+      "DeploymentBucketName": "amplify-amplify79ce20bcf2294-staging-225000-deployment",
+      "UnauthRoleName": "amplify-amplify79ce20bcf2294-staging-225000-unauthRole",
+      "StackName": "amplify-amplify79ce20bcf2294-staging-225000",
+      "StackId": "arn:aws:cloudformation:us-east-2:900765165512:stack/amplify-amplify79ce20bcf2294-staging-225000/810ba0d0-63a5-11ed-955d-022df678da04",
+      "AmplifyAppId": "d7yqjhet22v7a"
     },
     "categories": {
       "auth": {
-        "lloronaBuildBack": {}
+        "administradorllorona591453ca": {}
+      },
+      "api": {
+        "administradorLlorona": {}
       }
     }
   }
