@@ -8,7 +8,14 @@ function SideMenu() {
   const navigate = useNavigate();
 
   const onClick = async menuItem => {
-    navigate(menuItem.key);
+    if (menuItem.key === "signOut") {
+      await Auth.signOut();
+      window.location.reload();
+    }
+    else {
+      navigate(menuItem.key);
+}
+    
   };
 
   const mainMenuItems = [
@@ -31,6 +38,11 @@ function SideMenu() {
     {
       key: "listahoteles",
       label: "Lista Hoteles",
+    },
+    {
+      key: "signOut",
+      label: "Sign out",
+      danger: "true",
     },
   ];
 

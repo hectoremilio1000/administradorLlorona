@@ -10,6 +10,7 @@ import SideMenu from "../src/components/SideMenu";
 import AppRoutes from './components/AppRoutes';
 import ProductContextProvider from './components/contexts/ProductContext';
 import HotelContextProvider from "./components/contexts/HotelContext";
+import AuthContextProvider from './components/contexts/AuthContext';
 
 I18n.putVocabularies(translations);
 I18n.setLanguage("es");
@@ -38,27 +39,29 @@ Amplify.configure(awsconfig);
 function App() {
   return (
     <Authenticator loginMechanisms={["email"]}>
-      <ProductContextProvider>
-        <HotelContextProvider>
-          <Layout>
-            <Sider style={{ height: "100vh", backgroundColor: "white" }}>
-              <Image
-                src="https://imagenesrutalab.s3.amazonaws.com/llorona/cantina/logo/logo_page_alta.png"
-                preview={false}
-              />
-              <SideMenu />
-            </Sider>
+      <AuthContextProvider>
+        <ProductContextProvider>
+          <HotelContextProvider>
             <Layout>
-              <Content>
-                <AppRoutes />
-              </Content>
-              <Footer style={{ textAlign: "center" }}>
-                La Llorona Cantina Dashboard ©2022
-              </Footer>
+              <Sider style={{ height: "100vh", backgroundColor: "white" }}>
+                <Image
+                  src="https://imagenesrutalab.s3.amazonaws.com/llorona/cantina/logo/logo_page_alta.png"
+                  preview={false}
+                />
+                <SideMenu />
+              </Sider>
+              <Layout>
+                <Content>
+                  <AppRoutes />
+                </Content>
+                <Footer style={{ textAlign: "center" }}>
+                  La Llorona Cantina Dashboard ©2022
+                </Footer>
+              </Layout>
             </Layout>
-          </Layout>
-        </HotelContextProvider>
-      </ProductContextProvider>
+          </HotelContextProvider>
+        </ProductContextProvider>
+      </AuthContextProvider>
     </Authenticator>
   );
 }
