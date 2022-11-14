@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Select, Form, Input, DatePicker, message, Card } from "antd";
 import { DataStore } from "aws-amplify";
 import { Hotel } from '../../../models'
+import * as mutations from '../../../graphql/mutations'
 
   const { Item } = Form;
   const { Option } = Select;
@@ -29,16 +30,17 @@ const selectMandadoClientes = value => {
   setMandoClientes(value);
 };
   
-  const onFinish = () => {
+  const onFinish = async () => {
+
     try {
-      DataStore.save(
+      await DataStore.save(
         new Hotel({
-          nombre,
-          direccionCompleta,
-          fechaVisita,
-          mandoClientes,
-          visitaRecepcionista,
-          visitado,
+          nombre: nombre,
+          direccionCompleta: direccionCompleta,
+          visitado: visitado,
+          fechaVisita: fechaVisita,
+          visitaRecepcionista: visitaRecepcionista,
+          mandoClientes: mandoClientes,
         })
       );
       console.log(
@@ -49,11 +51,15 @@ const selectMandadoClientes = value => {
         visitaRecepcionista,
         mandoClientes
       );
-      window.location.reload(false);
+      window.location.reload();
       message.success("Hotel guardado");
     } catch (error) {
-      message.error("contacta al administrador", error);
+      console.log(error)
     }
+   
+      
+      
+  
   };
 
   return (
