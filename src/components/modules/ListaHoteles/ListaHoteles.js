@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useHotelContext } from "../../contexts/HotelContext";
 import { Card, Spin, Table } from "antd";
 import { API, graphqlOperation } from "aws-amplify";
-import { listHotels} from '../../../graphql/queries';
+import { listHotels } from '../../../graphql/queries';
+import { useNavigate } from "react-router-dom";
 
 function ListaHoteles() {
   const [hoteles, setHoteles] = useState([])
   const { hotel } = useHotelContext();
+  const navigate = useNavigate();
 
   const fetchHoteles = async () => {
     const hotelesCargados = await API.graphql(graphqlOperation(listHotels));
@@ -74,10 +76,10 @@ function ListaHoteles() {
           columns={columns}
           dataSource={hotel}
           rowKey="id"
-          // onRow={producto => ({
-          //   onClick: () =>
-          //     navigate(`producto/${producto.id}`, { replace: true }),
-          // })}
+          onRow={hotel => ({
+            onClick: () =>
+              navigate(`${hotel.id}`, { replace: true }),
+          })}
         />
       )}
     </div>
