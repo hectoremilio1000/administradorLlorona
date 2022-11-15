@@ -1,3 +1,13 @@
+type Empresa @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nombre: String
+  direccionCompleta: String
+  visitado: String
+  yaContacto: String
+  seCerroEvento: String
+  fechaVisita: String
+}
+
 type Hotel @model @auth(rules: [{allow: public}]) {
   id: ID!
   nombre: String
@@ -40,3 +50,4 @@ type Products @model @auth(rules: [{allow: public}]) {
   name: String
   Inventarios: [Inventario] @hasMany(indexName: "byProducts", fields: ["id"])
 }
+ 

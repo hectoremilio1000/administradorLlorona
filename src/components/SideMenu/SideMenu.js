@@ -40,6 +40,14 @@ function SideMenu() {
       label: "Lista Hoteles",
     },
     {
+      key: "crearempresa",
+      label: "Crear Empresa",
+    },
+    {
+      key: "listaempresas",
+      label: "Lista Empresas",
+    },
+    {
       key: "signOut",
       label: "Sign out",
       danger: "true",

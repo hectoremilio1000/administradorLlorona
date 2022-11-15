@@ -8,6 +8,10 @@ export enum Tipototal {
   CUADRA = "CUADRA"
 }
 
+type EmpresaMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type HotelMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -22,6 +26,36 @@ type InventarioMetaData = {
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerEmpresa = {
+  readonly id: string;
+  readonly nombre?: string | null;
+  readonly direccionCompleta?: string | null;
+  readonly visitado?: string | null;
+  readonly yaContacto?: string | null;
+  readonly seCerroEvento?: string | null;
+  readonly fechaVisita?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyEmpresa = {
+  readonly id: string;
+  readonly nombre?: string | null;
+  readonly direccionCompleta?: string | null;
+  readonly visitado?: string | null;
+  readonly yaContacto?: string | null;
+  readonly seCerroEvento?: string | null;
+  readonly fechaVisita?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Empresa = LazyLoading extends LazyLoadingDisabled ? EagerEmpresa : LazyEmpresa
+
+export declare const Empresa: (new (init: ModelInit<Empresa, EmpresaMetaData>) => Empresa) & {
+  copyOf(source: Empresa, mutator: (draft: MutableModel<Empresa, EmpresaMetaData>) => MutableModel<Empresa, EmpresaMetaData> | void): Empresa;
 }
 
 type EagerHotel = {

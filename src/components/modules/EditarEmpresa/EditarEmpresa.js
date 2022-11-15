@@ -9,17 +9,15 @@ import {
   DatePicker,
 } from "antd";
 import { DataStore } from "aws-amplify";
-import { useHotelContext } from "../../contexts/HotelContext";
 import { useParams } from "react-router-dom";
-import { Hotel } from "../../../models";
+import { Empresa } from "../../../models";
 import { useNavigate } from "react-router-dom";
-
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
-function EditarHotel() {
-  const [hotelFetched, setHotelFetched] = useState("");
+function EditarEmpresa() {
+  const [empresaFetched, setEmpresaFetched] = useState("");
 
   const [mostrarEditarNombre, setMostrarEditarNombre] = useState(false);
   const [nuevoNombre, setNuevoNombre] = useState("");
@@ -33,36 +31,30 @@ function EditarHotel() {
   const [mostrarVisitado, setMostrarVisitado] = useState(false);
   const [nuevoVisitado, setNuevoVisitado] = useState("");
 
-  const [mostrarVisitaRecepcionista, setMostrarVisitaRecepcionista] =
-    useState(false);
-  const [nuevoVisitaRecepcionista, setNuevoVisitaRecepcionista] = useState("");
+  const [mostrarYaContacto, setMostrarYaContacto] = useState(false);
+  const [nuevoYaContacto, setNuevoYaContacto] = useState("");
 
-  const [mostrarMandoClientes, setMostrarMandoClientes] = useState(false);
-  const [nuevoMandoClientes, setNuevoMandoClientes] = useState("");
+  const [mostrarSeCerroEvento, setMostrarSeCerroEvento] = useState(false);
+  const [nuevoSeCerroEvento, setNuevoSeCerroEvento] = useState("");
 
   const navigate = useNavigate();
-  
+
   const { id } = useParams();
 
 
-  const { hotel } = useHotelContext();
-
   useEffect(() => {
-     if (!hotel) {
-       return;
-     }
-    DataStore.query(Hotel, id).then(setHotelFetched);
-  }, [id])
-
-
-    let direccionCompleta = hotelFetched?.direccionCompleta;
-    let fechaVisita = hotelFetched?.fechaVisita;
-    let mandoClientes = hotelFetched?.mandoClientes;
-    let nombre = hotelFetched?.nombre;
-    let visitaRecepcionista = hotelFetched?.visitaRecepcionista;
-  let visitado = hotelFetched?.visitado;
   
-  const MostrarEditarHotel = () => {
+    DataStore.query(Empresa, id).then(setEmpresaFetched);
+  }, [id]);
+
+  let direccionCompleta = empresaFetched?.direccionCompleta;
+  let fechaVisita = empresaFetched?.fechaVisita;
+  let seCerroEvento = empresaFetched?.seCerroEvento;
+  let nombre = empresaFetched?.nombre;
+  let yaContacto = empresaFetched?.yaContacto;
+  let visitado = empresaFetched?.visitado;
+
+  const MostrarEditarEmpresa = () => {
     setMostrarEditarNombre(!mostrarEditarNombre);
   };
 
@@ -78,42 +70,40 @@ function EditarHotel() {
     setMostrarFechaVisita(!mostrarFechaVisita);
   };
 
-  const MostrarVisitaRecepcionista = () => {
-    setMostrarVisitaRecepcionista(!mostrarVisitaRecepcionista);
+  const MostrarYaContacto = () => {
+    setMostrarYaContacto(!mostrarYaContacto);
   };
 
-  const MostrarMandoClientes = () => {
-    setMostrarMandoClientes(!mostrarMandoClientes);
+  const MostrarSeCerroEvento = () => {
+    setMostrarSeCerroEvento(!mostrarSeCerroEvento);
   };
 
-    const EliminarHotel = async () => {
-      await DataStore.delete(Hotel, id);
-      navigate(-1);
-    };
+  const EliminarHotel = async () => {
+    await DataStore.delete(Empresa, id);
+    navigate(-1);
+  };
 
   const guardarNombre = async () => {
     try {
-      const updateHotel = await DataStore.save(
-        Hotel.copyOf(hotelFetched, updated => {
+      const updateEmpresa = await DataStore.save(
+        Empresa.copyOf(empresaFetched, updated => {
           updated.nombre = nuevoNombre;
         })
       );
-      setHotelFetched(updateHotel);
+      setEmpresaFetched(updateEmpresa);
       window.location.reload(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
-   
   };
 
   const guardarDireccion = async () => {
-    const updateHotel = await DataStore.save(
-      Hotel.copyOf(hotelFetched, updated => {
+    const updateEmpresa = await DataStore.save(
+      Empresa.copyOf(empresaFetched, updated => {
         updated.direccionCompleta = nuevaDireccion;
       })
     );
-    setHotelFetched(updateHotel);
+    setEmpresaFetched(updateEmpresa);
     // window.location.reload(false);
   };
 
@@ -123,12 +113,12 @@ function EditarHotel() {
   };
 
   const guardarVisitado = async () => {
-    const updateHotel = await DataStore.save(
-      Hotel.copyOf(hotelFetched, updated => {
-        updated.visitado = nuevoVisitado;
-      })
-    );
-    setHotelFetched(updateHotel);
+     const updateEmpresa = await DataStore.save(
+       Empresa.copyOf(empresaFetched, updated => {
+         updated.visitado = nuevoVisitado;
+       })
+     );
+   setEmpresaFetched(updateEmpresa);
     // window.location.reload(false);
   };
 
@@ -137,52 +127,50 @@ function EditarHotel() {
     setNuevaFechaVisita(dateString);
   };
   const guardarFechaVisita = async () => {
-    const updateHotel = await DataStore.save(
-      Hotel.copyOf(hotelFetched, updated => {
+    const updateEmpresa = await DataStore.save(
+      Empresa.copyOf(empresaFetched, updated => {
         updated.fechaVisita = nuevaFechaVisita;
       })
     );
-    setHotelFetched(updateHotel);
+  setEmpresaFetched(updateEmpresa);
     // window.location.reload(false);
   };
 
   //guardarVisita Recepcionista
 
-  const selectVisitadaRecepcionista = value => {
-    setNuevoVisitaRecepcionista(value);
+  const selectYaContacto = value => {
+    setNuevoYaContacto(value);
   };
 
-  const guardarVisitaRecepcionista = async () => {
-    const updateHotel = await DataStore.save(
-      Hotel.copyOf(hotelFetched, updated => {
-        updated.visitaRecepcionista = nuevoVisitaRecepcionista;
+  const guardarYaContacto = async () => {
+    const updateEmpresa = await DataStore.save(
+      Empresa.copyOf(empresaFetched, updated => {
+        updated.yaContacto = nuevoYaContacto;
       })
     );
-    setHotelFetched(updateHotel);
+   setEmpresaFetched(updateEmpresa);
     // window.location.reload(false);
   };
 
   //guardar mandado Clientes
 
-  const selectMandadoClientes = value => {
-    setNuevoMandoClientes(value);
+  const selectSeCerroEvento = value => {
+    setNuevoSeCerroEvento(value);
   };
 
-  const guardarMandadoClientes = async () => {
-    const updateHotel = await DataStore.save(
-      Hotel.copyOf(hotelFetched, updated => {
-        updated.mandoClientes = nuevoMandoClientes;
-      })
-    );
-    setHotelFetched(updateHotel);
+  const guardarSeCerroEvento = async () => {
+ const updateEmpresa = await DataStore.save(
+   Empresa.copyOf(empresaFetched, updated => {
+     updated.seCerroEvento = nuevoSeCerroEvento;
+   })
+ );
+ setEmpresaFetched(updateEmpresa);
     // window.location.reload(false);
   };
 
   const regresar = () => {
     navigate(-1);
   };
-  
-  
 
   return (
     <Card>
@@ -190,16 +178,16 @@ function EditarHotel() {
         Da click para Regresar
       </Button>
       <div style={{ marginBottom: 4 }}>
-        <Typography>Hotel Id: {id}</Typography>
+        <Typography>Empresa Id: {id}</Typography>
         {/* <Button onClick={EliminarHotel} type="danger">
           {" "}
           Eliminar Hotel
         </Button> */}
       </div>
       <Divider />
-      <Card size="small" title="Editar Hotel">
-        <Title level={4}>Nombre del Hotel: {nombre}</Title>
-        <Button type="primary" onClick={MostrarEditarHotel}>
+      <Card size="small" title="Editar Empresa">
+        <Title level={4}>Nombre de la Empresa: {nombre}</Title>
+        <Button type="primary" onClick={MostrarEditarEmpresa}>
           Editar
         </Button>
         {mostrarEditarNombre && (
@@ -251,7 +239,7 @@ function EditarHotel() {
       </Card>
 
       <Card size="small" style={{ marginTop: 10 }}>
-        <Title level={5}>Cuando se visitó el hotel? : {fechaVisita}</Title>
+        <Title level={5}>Cuando se visitó la empresa? : {fechaVisita}</Title>
         <Button type="primary" onClick={MostrarFechaVisita}>
           Editar
         </Button>
@@ -266,45 +254,40 @@ function EditarHotel() {
       </Card>
 
       <Card size="small" style={{ marginTop: 10 }}>
-        <Title level={5}>
-          Algún recepcionista ya visitó la Llorona? : {visitaRecepcionista}
-        </Title>
-        <Button type="primary" onClick={MostrarVisitaRecepcionista}>
+        <Title level={5}>Ya nos contactaron? : {yaContacto}</Title>
+        <Button type="primary" onClick={MostrarYaContacto}>
           Editar
         </Button>
 
-        {mostrarVisitaRecepcionista && (
+        {mostrarYaContacto && (
           <Card size="small">
-            <Select
-              onChange={selectVisitadaRecepcionista}
-              placeholder={visitaRecepcionista}
-            >
+            <Select onChange={selectYaContacto} placeholder={yaContacto}>
               <Option value="si">Sí</Option>
               <Option value="no">No</Option>
             </Select>
 
-            <Button onClick={guardarVisitaRecepcionista}>Guardar</Button>
+            <Button onClick={guardarYaContacto}>Guardar</Button>
           </Card>
         )}
       </Card>
 
       <Card size="small" style={{ marginTop: 10 }}>
-        <Title level={5}>El hotel ha mandado clientes? : {mandoClientes}</Title>
-        <Button type="primary" onClick={MostrarMandoClientes}>
+        <Title level={5}>El hotel ha mandado clientes? : {seCerroEvento}</Title>
+        <Button type="primary" onClick={MostrarSeCerroEvento}>
           Editar
         </Button>
 
-        {mostrarMandoClientes && (
+        {mostrarSeCerroEvento && (
           <Card size="small">
             <Select
-              onChange={selectMandadoClientes}
-              placeholder={mandoClientes}
+              onChange={selectSeCerroEvento}
+              placeholder={seCerroEvento}
             >
               <Option value="si">Sí</Option>
               <Option value="no">No</Option>
             </Select>
 
-            <Button onClick={guardarMandadoClientes}>Guardar</Button>
+            <Button onClick={guardarSeCerroEvento}>Guardar</Button>
           </Card>
         )}
       </Card>
@@ -312,4 +295,4 @@ function EditarHotel() {
   );
 }
 
-export default EditarHotel;
+export default EditarEmpresa;
