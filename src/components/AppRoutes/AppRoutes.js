@@ -6,6 +6,7 @@ import Inventario from '../modules/Inventario';
 import ListaHoteles from '../modules/ListaHoteles';
 import CrearHotel from '../modules/Hotel/CrearHotel';
 import EditarHotel from '../modules/EditarHotel';
+import EditarInventario from '../modules/EditarInventario/EditarInventario';
 
 function AppRoutes() {
   return (
@@ -15,7 +16,7 @@ function AppRoutes() {
       {/* Producto*/}
       <Route path="producto" element={<Producto />} />
       <Route path="inventario" element={<Inventario />} />
-      <Route path="inventario/:id" element={<Inventario />} />
+      <Route path="inventario/:id" element={<EditarInventario />} />
 
       {/* Hoteles*/}
       <Route path="crearhotel" element={<CrearHotel />} />
