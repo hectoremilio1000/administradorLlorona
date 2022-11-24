@@ -2,10 +2,28 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
+export enum Tipototalbotellas {
+  SOBRANTE = "SOBRANTE",
+  FALTANTE = "FALTANTE",
+  CUADRA = "CUADRA"
+}
+
 export enum Tipototal {
   SOBRANTE = "SOBRANTE",
   FALTANTE = "FALTANTE",
   CUADRA = "CUADRA"
+}
+
+type StockInventariosBotellasMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type InventarioBotellasMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type ProductosBotellasMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type EmpresaMetaData = {
@@ -26,6 +44,90 @@ type InventarioMetaData = {
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerStockInventariosBotellas = {
+  readonly id: string;
+  readonly quantity?: number | null;
+  readonly fecha?: string | null;
+  readonly inventariobotellasID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyStockInventariosBotellas = {
+  readonly id: string;
+  readonly quantity?: number | null;
+  readonly fecha?: string | null;
+  readonly inventariobotellasID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type StockInventariosBotellas = LazyLoading extends LazyLoadingDisabled ? EagerStockInventariosBotellas : LazyStockInventariosBotellas
+
+export declare const StockInventariosBotellas: (new (init: ModelInit<StockInventariosBotellas, StockInventariosBotellasMetaData>) => StockInventariosBotellas) & {
+  copyOf(source: StockInventariosBotellas, mutator: (draft: MutableModel<StockInventariosBotellas, StockInventariosBotellasMetaData>) => MutableModel<StockInventariosBotellas, StockInventariosBotellasMetaData> | void): StockInventariosBotellas;
+}
+
+type EagerInventarioBotellas = {
+  readonly id: string;
+  readonly inventarioInicialFisico?: number | null;
+  readonly inventarioFinalFisico?: number | null;
+  readonly fechaInicioConteoFisico?: string | null;
+  readonly fechaFinConteoFisico?: string | null;
+  readonly ventas?: number | null;
+  readonly compras?: number | null;
+  readonly total?: number | null;
+  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly productosbotellasID: string;
+  readonly StockInventariosBotellas?: (StockInventariosBotellas | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyInventarioBotellas = {
+  readonly id: string;
+  readonly inventarioInicialFisico?: number | null;
+  readonly inventarioFinalFisico?: number | null;
+  readonly fechaInicioConteoFisico?: string | null;
+  readonly fechaFinConteoFisico?: string | null;
+  readonly ventas?: number | null;
+  readonly compras?: number | null;
+  readonly total?: number | null;
+  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly productosbotellasID: string;
+  readonly StockInventariosBotellas: AsyncCollection<StockInventariosBotellas>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type InventarioBotellas = LazyLoading extends LazyLoadingDisabled ? EagerInventarioBotellas : LazyInventarioBotellas
+
+export declare const InventarioBotellas: (new (init: ModelInit<InventarioBotellas, InventarioBotellasMetaData>) => InventarioBotellas) & {
+  copyOf(source: InventarioBotellas, mutator: (draft: MutableModel<InventarioBotellas, InventarioBotellasMetaData>) => MutableModel<InventarioBotellas, InventarioBotellasMetaData> | void): InventarioBotellas;
+}
+
+type EagerProductosBotellas = {
+  readonly id: string;
+  readonly name?: string | null;
+  readonly InventarioBotellas?: (InventarioBotellas | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyProductosBotellas = {
+  readonly id: string;
+  readonly name?: string | null;
+  readonly InventarioBotellas: AsyncCollection<InventarioBotellas>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type ProductosBotellas = LazyLoading extends LazyLoadingDisabled ? EagerProductosBotellas : LazyProductosBotellas
+
+export declare const ProductosBotellas: (new (init: ModelInit<ProductosBotellas, ProductosBotellasMetaData>) => ProductosBotellas) & {
+  copyOf(source: ProductosBotellas, mutator: (draft: MutableModel<ProductosBotellas, ProductosBotellasMetaData>) => MutableModel<ProductosBotellas, ProductosBotellasMetaData> | void): ProductosBotellas;
 }
 
 type EagerEmpresa = {
@@ -121,7 +223,7 @@ type EagerInventario = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
   readonly productsID: string;
   readonly StockEventInventarios?: (StockEventInventario | null)[] | null;
   readonly createdAt?: string | null;
@@ -137,7 +239,7 @@ type LazyInventario = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
   readonly productsID: string;
   readonly StockEventInventarios: AsyncCollection<StockEventInventario>;
   readonly createdAt?: string | null;

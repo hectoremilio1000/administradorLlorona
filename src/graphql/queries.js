@@ -1,6 +1,315 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getStockInventariosBotellas = /* GraphQL */ `
+  query GetStockInventariosBotellas($id: ID!) {
+    getStockInventariosBotellas(id: $id) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listStockInventariosBotellas = /* GraphQL */ `
+  query ListStockInventariosBotellas(
+    $filter: ModelStockInventariosBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listStockInventariosBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        quantity
+        fecha
+        inventariobotellasID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncStockInventariosBotellas = /* GraphQL */ `
+  query SyncStockInventariosBotellas(
+    $filter: ModelStockInventariosBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncStockInventariosBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        quantity
+        fecha
+        inventariobotellasID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getInventarioBotellas = /* GraphQL */ `
+  query GetInventarioBotellas($id: ID!) {
+    getInventarioBotellas(id: $id) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listInventarioBotellas = /* GraphQL */ `
+  query ListInventarioBotellas(
+    $filter: ModelInventarioBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInventarioBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        inventarioInicialFisico
+        inventarioFinalFisico
+        fechaInicioConteoFisico
+        fechaFinConteoFisico
+        ventas
+        compras
+        total
+        tipoTotal
+        productosbotellasID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncInventarioBotellas = /* GraphQL */ `
+  query SyncInventarioBotellas(
+    $filter: ModelInventarioBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncInventarioBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        inventarioInicialFisico
+        inventarioFinalFisico
+        fechaInicioConteoFisico
+        fechaFinConteoFisico
+        ventas
+        compras
+        total
+        tipoTotal
+        productosbotellasID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getProductosBotellas = /* GraphQL */ `
+  query GetProductosBotellas($id: ID!) {
+    getProductosBotellas(id: $id) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listProductosBotellas = /* GraphQL */ `
+  query ListProductosBotellas(
+    $filter: ModelProductosBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProductosBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncProductosBotellas = /* GraphQL */ `
+  query SyncProductosBotellas(
+    $filter: ModelProductosBotellasFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncProductosBotellas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getEmpresa = /* GraphQL */ `
+  query GetEmpresa($id: ID!) {
+    getEmpresa(id: $id) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listEmpresas = /* GraphQL */ `
+  query ListEmpresas(
+    $filter: ModelEmpresaFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEmpresas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        nombre
+        direccionCompleta
+        visitado
+        yaContacto
+        seCerroEvento
+        fechaVisita
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncEmpresas = /* GraphQL */ `
+  query SyncEmpresas(
+    $filter: ModelEmpresaFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncEmpresas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        nombre
+        direccionCompleta
+        visitado
+        yaContacto
+        seCerroEvento
+        fechaVisita
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getHotel = /* GraphQL */ `
   query GetHotel($id: ID!) {
     getHotel(id: $id) {

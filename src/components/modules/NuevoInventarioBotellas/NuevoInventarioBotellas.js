@@ -11,60 +11,56 @@ import {
   Typography,
 } from "antd";
 import { DataStore } from "aws-amplify";
-import { Inventario } from "../../../models";
-
+import { InventarioBotellas } from "../../../models";
 
 const { Item } = Form;
 
-
-function NuevoInventario({ productoID }) {
-
-  
+function NuevoInventarioBotellas({ botellaID }) {
   const [fechaInicial, setFechaInicial] = useState("");
   const [fechaFinal, setFechaFinal] = useState("");
   const [invFisInic, setInvFisInic] = useState("");
   const [invFisFin, setInvFisFin] = useState("");
   const [ventas, setVentas] = useState("");
 
-const onChangeInicial = (date, dateString) => {
-  setFechaInicial(dateString);
-};
+  const onChangeInicial = (date, dateString) => {
+    setFechaInicial(dateString);
+  };
 
-const onChangeFinal = (date, dateString) => {
-  setFechaFinal(dateString);
-};
+  const onChangeFinal = (date, dateString) => {
+    setFechaFinal(dateString);
+  };
 
-const onChangeVentas = value => {
-  setVentas(parseFloat(value));
-};
+  const onChangeVentas = value => {
+    setVentas(parseFloat(value));
+  };
 
-const GenerarInventario = async () => {
-  const numero = ventas;
-  console.log(typeof numero);
-  console.log(numero);
-  const invFisInicNumero = parseFloat(invFisInic);
-  const invFisFinNumero = parseFloat(invFisFin);
+  const GenerarInventario = async () => {
+    const numero = ventas;
+ 
+  
+    const invFisInicNumero = parseFloat(invFisInic);
+    const invFisFinNumero = parseFloat(invFisFin);
 
-  try {
-    await DataStore.save(
-      new Inventario({
-        inventarioInicialFisico: invFisInicNumero,
-        inventarioFinalFisico: invFisFinNumero,
-        fechaInicioConteoFisico: fechaInicial,
-        fechaFinConteoFisico: fechaFinal,
-        productsID: productoID,
-        ventas: numero,
-      })
-    );
+    try {
+      await DataStore.save(
+        new InventarioBotellas({
+          inventarioInicialFisico: invFisInicNumero,
+          inventarioFinalFisico: invFisFinNumero,
+          fechaInicioConteoFisico: fechaInicial,
+          fechaFinConteoFisico: fechaFinal,
+          productosbotellasID: botellaID,
+          ventas: numero/16,
+        })
+      );
 
-    message.success(
-      "inventario creado correctamente, ahora genera las compras"
-    );
-    window.location.reload(false);
-  } catch (error) {
-    console.log(error);
-  }
-};
+      message.success(
+        "inventario creado correctamente, ahora genera las compras"
+      );
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card>
@@ -90,7 +86,7 @@ const GenerarInventario = async () => {
           style={{ width: 150 }}
         />
       </Item>
-      <Item label="Ingresa las ventas del período obtenidas del sistema:">
+      <Item label="Ingresa las ventas del período obtenidas del sistema en cantidad de tragos vendidos:">
         <InputNumber
           min={1}
           placeholder="Cantidad"
@@ -114,4 +110,4 @@ const GenerarInventario = async () => {
   );
 }
 
-export default NuevoInventario;
+export default NuevoInventarioBotellas;

@@ -1,6 +1,249 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateStockInventariosBotellas = /* GraphQL */ `
+  subscription OnCreateStockInventariosBotellas(
+    $filter: ModelSubscriptionStockInventariosBotellasFilterInput
+  ) {
+    onCreateStockInventariosBotellas(filter: $filter) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateStockInventariosBotellas = /* GraphQL */ `
+  subscription OnUpdateStockInventariosBotellas(
+    $filter: ModelSubscriptionStockInventariosBotellasFilterInput
+  ) {
+    onUpdateStockInventariosBotellas(filter: $filter) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteStockInventariosBotellas = /* GraphQL */ `
+  subscription OnDeleteStockInventariosBotellas(
+    $filter: ModelSubscriptionStockInventariosBotellasFilterInput
+  ) {
+    onDeleteStockInventariosBotellas(filter: $filter) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateInventarioBotellas = /* GraphQL */ `
+  subscription OnCreateInventarioBotellas(
+    $filter: ModelSubscriptionInventarioBotellasFilterInput
+  ) {
+    onCreateInventarioBotellas(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateInventarioBotellas = /* GraphQL */ `
+  subscription OnUpdateInventarioBotellas(
+    $filter: ModelSubscriptionInventarioBotellasFilterInput
+  ) {
+    onUpdateInventarioBotellas(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteInventarioBotellas = /* GraphQL */ `
+  subscription OnDeleteInventarioBotellas(
+    $filter: ModelSubscriptionInventarioBotellasFilterInput
+  ) {
+    onDeleteInventarioBotellas(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateProductosBotellas = /* GraphQL */ `
+  subscription OnCreateProductosBotellas(
+    $filter: ModelSubscriptionProductosBotellasFilterInput
+  ) {
+    onCreateProductosBotellas(filter: $filter) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateProductosBotellas = /* GraphQL */ `
+  subscription OnUpdateProductosBotellas(
+    $filter: ModelSubscriptionProductosBotellasFilterInput
+  ) {
+    onUpdateProductosBotellas(filter: $filter) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteProductosBotellas = /* GraphQL */ `
+  subscription OnDeleteProductosBotellas(
+    $filter: ModelSubscriptionProductosBotellasFilterInput
+  ) {
+    onDeleteProductosBotellas(filter: $filter) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateEmpresa = /* GraphQL */ `
+  subscription OnCreateEmpresa($filter: ModelSubscriptionEmpresaFilterInput) {
+    onCreateEmpresa(filter: $filter) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateEmpresa = /* GraphQL */ `
+  subscription OnUpdateEmpresa($filter: ModelSubscriptionEmpresaFilterInput) {
+    onUpdateEmpresa(filter: $filter) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteEmpresa = /* GraphQL */ `
+  subscription OnDeleteEmpresa($filter: ModelSubscriptionEmpresaFilterInput) {
+    onDeleteEmpresa(filter: $filter) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateHotel = /* GraphQL */ `
   subscription OnCreateHotel($filter: ModelSubscriptionHotelFilterInput) {
     onCreateHotel(filter: $filter) {

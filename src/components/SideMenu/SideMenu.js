@@ -32,6 +32,14 @@ function SideMenu() {
       label: "Inventario Productos",
     },
     {
+      key: "botella",
+      label: "Crear Botella",
+    },
+    {
+      key: "listabotellas",
+      label: "Inventario Botellas",
+    },
+    {
       key: "crearhotel",
       label: "Crear Hotel",
     },

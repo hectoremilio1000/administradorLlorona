@@ -1,6 +1,267 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createStockInventariosBotellas = /* GraphQL */ `
+  mutation CreateStockInventariosBotellas(
+    $input: CreateStockInventariosBotellasInput!
+    $condition: ModelStockInventariosBotellasConditionInput
+  ) {
+    createStockInventariosBotellas(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateStockInventariosBotellas = /* GraphQL */ `
+  mutation UpdateStockInventariosBotellas(
+    $input: UpdateStockInventariosBotellasInput!
+    $condition: ModelStockInventariosBotellasConditionInput
+  ) {
+    updateStockInventariosBotellas(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteStockInventariosBotellas = /* GraphQL */ `
+  mutation DeleteStockInventariosBotellas(
+    $input: DeleteStockInventariosBotellasInput!
+    $condition: ModelStockInventariosBotellasConditionInput
+  ) {
+    deleteStockInventariosBotellas(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      inventariobotellasID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createInventarioBotellas = /* GraphQL */ `
+  mutation CreateInventarioBotellas(
+    $input: CreateInventarioBotellasInput!
+    $condition: ModelInventarioBotellasConditionInput
+  ) {
+    createInventarioBotellas(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateInventarioBotellas = /* GraphQL */ `
+  mutation UpdateInventarioBotellas(
+    $input: UpdateInventarioBotellasInput!
+    $condition: ModelInventarioBotellasConditionInput
+  ) {
+    updateInventarioBotellas(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteInventarioBotellas = /* GraphQL */ `
+  mutation DeleteInventarioBotellas(
+    $input: DeleteInventarioBotellasInput!
+    $condition: ModelInventarioBotellasConditionInput
+  ) {
+    deleteInventarioBotellas(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      ventas
+      compras
+      total
+      tipoTotal
+      productosbotellasID
+      StockInventariosBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createProductosBotellas = /* GraphQL */ `
+  mutation CreateProductosBotellas(
+    $input: CreateProductosBotellasInput!
+    $condition: ModelProductosBotellasConditionInput
+  ) {
+    createProductosBotellas(input: $input, condition: $condition) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateProductosBotellas = /* GraphQL */ `
+  mutation UpdateProductosBotellas(
+    $input: UpdateProductosBotellasInput!
+    $condition: ModelProductosBotellasConditionInput
+  ) {
+    updateProductosBotellas(input: $input, condition: $condition) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteProductosBotellas = /* GraphQL */ `
+  mutation DeleteProductosBotellas(
+    $input: DeleteProductosBotellasInput!
+    $condition: ModelProductosBotellasConditionInput
+  ) {
+    deleteProductosBotellas(input: $input, condition: $condition) {
+      id
+      name
+      InventarioBotellas {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createEmpresa = /* GraphQL */ `
+  mutation CreateEmpresa(
+    $input: CreateEmpresaInput!
+    $condition: ModelEmpresaConditionInput
+  ) {
+    createEmpresa(input: $input, condition: $condition) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateEmpresa = /* GraphQL */ `
+  mutation UpdateEmpresa(
+    $input: UpdateEmpresaInput!
+    $condition: ModelEmpresaConditionInput
+  ) {
+    updateEmpresa(input: $input, condition: $condition) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteEmpresa = /* GraphQL */ `
+  mutation DeleteEmpresa(
+    $input: DeleteEmpresaInput!
+    $condition: ModelEmpresaConditionInput
+  ) {
+    deleteEmpresa(input: $input, condition: $condition) {
+      id
+      nombre
+      direccionCompleta
+      visitado
+      yaContacto
+      seCerroEvento
+      fechaVisita
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createHotel = /* GraphQL */ `
   mutation CreateHotel(
     $input: CreateHotelInput!

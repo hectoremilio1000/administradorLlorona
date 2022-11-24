@@ -10,12 +10,12 @@ import {
   Typography,
 } from "antd";
 import { DataStore } from "aws-amplify";
-import { Inventario, StockEventInventario } from "../../models";
 import { useNavigate } from "react-router-dom";
-import MostrarCompras from '../modules/MostrarCompras/MostrarCompras';
 
+import { InventarioBotellas, StockInventariosBotellas } from "../../../models";
+import MostrarBotellasCompras from '../MostrarBotellasCompras/MostrarBotellasCompras';
 
-function CorteInventario({ id }) {
+function CorteBotellas({ id }) {
   const [inventario, setInventario] = useState(null);
   const [compras, setCompras] = useState("");
   const [ventas, setVentas] = useState("");
@@ -30,21 +30,21 @@ function CorteInventario({ id }) {
   // eventsCompras
   const [eventCompras, setEventCompras] = useState([]);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const inventarioProducto = async () => {
-    const inventarioIdProducto = await DataStore.query(Inventario, id);
-    setInventario(inventarioIdProducto);
+  const inventarioBotella = async () => {
+    const inventarioIdBotellaFinal = await DataStore.query(InventarioBotellas, id);
+    setInventario(inventarioIdBotellaFinal);
   };
 
   useEffect(() => {
-    inventarioProducto();
+    inventarioBotella();
   }, [id]);
 
   // fetch stockCompras
   const FetchCompras = async () => {
-    const ComprasTotales = await DataStore.query(StockEventInventario, stock =>
-      stock.inventarioID("eq", id)
+    const ComprasTotales = await DataStore.query(StockInventariosBotellas, stock =>
+      stock.inventariobotellasID("eq", id)
     );
     setEventCompras(ComprasTotales);
   };
@@ -54,37 +54,50 @@ function CorteInventario({ id }) {
       return;
     }
     FetchCompras();
-    const subscription = DataStore.observe(Inventario).subscribe(FetchCompras);
+    const subscription = DataStore.observe(InventarioBotellas).subscribe(FetchCompras);
     subscription.unsubscribe();
   }, [id]);
 
+  console.log(inventario);
+  console.log("estas son las compras", eventCompras);
+
+  // const array = [
+  //   Number(inventario?.inventarioInicialFisico),
+  //   Number(inventario?.inventarioFinalFisico),
+  //    inventario?.compras, inventario?.ventas
+  // ];
+  // const initialValue = 0;
+  // // console.log(array);
+  // const quantity = array.reduce((a, b) => a + b, initialValue);
+
   const quantity =
-    -inventario?.inventarioInicialFisico -
-    inventario?.compras +
+   - inventario?.inventarioInicialFisico 
+   - inventario?.compras +
     inventario?.ventas +
-    inventario?.inventarioFinalFisico;
-  
-    useEffect(() => {
-      if (!quantity) {
-        return;
-      }
-      setCantidad(quantity);
-    }, [quantity]);
-  
-    useEffect(() => {
-      if (!quantity) {
-        return;
-      }
-       if (quantity > 0) {
-         setTipoTotal("SOBRANTE");
-       } else if (quantity < 0) {
-         setTipoTotal("FALTANTE");
-       } else if (quantity === 0) {
-         setTipoTotal("CUADRA");
-       }
-    }, [quantity]);
-  
-  
+    inventario?.inventarioFinalFisico
+
+  useEffect(() => {
+    if (!quantity) {
+      return;
+    }
+    setCantidad(quantity);
+  }, [quantity]);
+
+  console.log(quantity)
+
+  useEffect(() => {
+    if (!quantity) {
+      return;
+    }
+    if (quantity > 0) {
+      setTipoTotal("SOBRANTE");
+    } else if (quantity < 0) {
+      setTipoTotal("FALTANTE");
+    } else if (quantity === 0) {
+      setTipoTotal("CUADRA");
+    }
+  }, [quantity]);
+
   let definirMes = inventario?.fechaInicioConteoFisico.substr(0, 7);
 
   useEffect(() => {
@@ -98,35 +111,33 @@ function CorteInventario({ id }) {
     setShowEditar(!showEditar);
   };
 
-
   const ShowCompras = () => {
     setMostrarCompras(!mostrarCompras);
   };
 
+  const GenerarCalculo = async () => {
+    try {
+      await DataStore.save(
+        InventarioBotellas.copyOf(inventario, updated => {
+          updated.total = cantidad;
+          updated.tipoTotal = tipoTotal;
+        })
+      );
 
-    const GenerarCalculo = async () => {
-      try {
-        await DataStore.save(
-          Inventario.copyOf(inventario, updated => {
-            updated.total = cantidad
-              updated.tipoTotal = tipoTotal
-          }));
-        
-        window.location.reload(false);
-        message.success("inventario final generado correctamente");
-      } catch (error) {
-        console.log(error);
-        message.error("contacta al administrador");
-      }
-    };
-
+      window.location.reload(false);
+      message.success("inventario final generado correctamente");
+    } catch (error) {
+      console.log(error);
+      message.error("contacta al administrador");
+    }
+  };
 
   return (
     <div key={id}>
       {/* <BorrarInventario id={id} /> */}
       {inventario?.fechaInicioConteoFisico &&
         inventario?.fechaFinConteoFisico &&
-         (
+          (
           <Card key={id}>
             <Typography.Text type="default">
               Inventario id: {id}
@@ -205,7 +216,7 @@ function CorteInventario({ id }) {
             )}
             {mostrarCompras && !inventario?.compras && (
               <Card>
-                <MostrarCompras id={id} />
+                <MostrarBotellasCompras id={id} />
               </Card>
             )}
             {/* {showEditar && !inventario?.compras && (
@@ -219,4 +230,4 @@ function CorteInventario({ id }) {
   );
 }
 
-export default CorteInventario;
+export default CorteBotellas;

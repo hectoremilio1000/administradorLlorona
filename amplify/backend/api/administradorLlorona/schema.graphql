@@ -1,3 +1,36 @@
+enum TIPOTOTALBOTELLAS {
+  SOBRANTE
+  FALTANTE
+  CUADRA
+}
+
+type StockInventariosBotellas @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Float
+  fecha: String
+  inventariobotellasID: ID! @index(name: "byInventarioBotellas")
+}
+
+type InventarioBotellas @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  inventarioInicialFisico: Float
+  inventarioFinalFisico: Float
+  fechaInicioConteoFisico: String
+  fechaFinConteoFisico: String
+  ventas: Float
+  compras: Float
+  total: Float
+  tipoTotal: TIPOTOTALBOTELLAS
+  productosbotellasID: ID! @index(name: "byProductosBotellas")
+  StockInventariosBotellas: [StockInventariosBotellas] @hasMany(indexName: "byInventarioBotellas", fields: ["id"])
+}
+
+type ProductosBotellas @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  InventarioBotellas: [InventarioBotellas] @hasMany(indexName: "byProductosBotellas", fields: ["id"])
+}
+
 type Empresa @model @auth(rules: [{allow: public}]) {
   id: ID!
   nombre: String
@@ -40,7 +73,7 @@ type Inventario @model @auth(rules: [{allow: public}]) {
   ventas: Float
   compras: Float
   total: Float
-  tipoTotal: TIPOTOTAL
+  tipoTotal: TIPOTOTALBOTELLAS
   productsID: ID! @index(name: "byProducts")
   StockEventInventarios: [StockEventInventario] @hasMany(indexName: "byInventario", fields: ["id"])
 }
