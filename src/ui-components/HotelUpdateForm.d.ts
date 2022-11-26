@@ -50,5 +50,5 @@ export declare type HotelUpdateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: HotelUpdateFormInputValues) => HotelUpdateFormInputValues;
     onValidate?: HotelUpdateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function HotelUpdateForm(props: HotelUpdateFormProps): React.ReactElement;

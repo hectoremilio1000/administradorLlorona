@@ -48,5 +48,5 @@ export declare type EmpresaCreateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: EmpresaCreateFormInputValues) => EmpresaCreateFormInputValues;
     onValidate?: EmpresaCreateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function EmpresaCreateForm(props: EmpresaCreateFormProps): React.ReactElement;

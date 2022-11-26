@@ -48,5 +48,5 @@ export declare type HotelCreateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: HotelCreateFormInputValues) => HotelCreateFormInputValues;
     onValidate?: HotelCreateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function HotelCreateForm(props: HotelCreateFormProps): React.ReactElement;

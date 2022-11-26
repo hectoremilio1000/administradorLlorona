@@ -35,5 +35,5 @@ export declare type ProductsUpdateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: ProductsUpdateFormInputValues) => ProductsUpdateFormInputValues;
     onValidate?: ProductsUpdateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function ProductsUpdateForm(props: ProductsUpdateFormProps): React.ReactElement;

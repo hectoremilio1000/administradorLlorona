@@ -33,5 +33,5 @@ export declare type ProductsCreateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: ProductsCreateFormInputValues) => ProductsCreateFormInputValues;
     onValidate?: ProductsCreateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function ProductsCreateForm(props: ProductsCreateFormProps): React.ReactElement;

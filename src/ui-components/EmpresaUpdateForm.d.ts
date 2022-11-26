@@ -50,5 +50,5 @@ export declare type EmpresaUpdateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: EmpresaUpdateFormInputValues) => EmpresaUpdateFormInputValues;
     onValidate?: EmpresaUpdateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function EmpresaUpdateForm(props: EmpresaUpdateFormProps): React.ReactElement;

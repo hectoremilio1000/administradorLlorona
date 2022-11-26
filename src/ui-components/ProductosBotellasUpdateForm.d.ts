@@ -35,5 +35,5 @@ export declare type ProductosBotellasUpdateFormProps = React.PropsWithChildren<{
     onCancel?: () => void;
     onChange?: (fields: ProductosBotellasUpdateFormInputValues) => ProductosBotellasUpdateFormInputValues;
     onValidate?: ProductosBotellasUpdateFormValidationValues;
-}>;
+} & React.CSSProperties>;
 export default function ProductosBotellasUpdateForm(props: ProductosBotellasUpdateFormProps): React.ReactElement;

@@ -50,5 +50,12 @@
         ]
       }
     }
+  },
+  "storage": {
+    "s38c902db7": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

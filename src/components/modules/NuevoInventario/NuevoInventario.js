@@ -13,9 +13,7 @@ import {
 import { DataStore } from "aws-amplify";
 import { Inventario } from "../../../models";
 
-
 const { Item } = Form;
-
 
 function NuevoInventario({ productoID }) {
 
