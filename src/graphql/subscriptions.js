@@ -1,6 +1,69 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateCLIENTES = /* GraphQL */ `
+  subscription OnCreateCLIENTES($filter: ModelSubscriptionCLIENTESFilterInput) {
+    onCreateCLIENTES(filter: $filter) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateCLIENTES = /* GraphQL */ `
+  subscription OnUpdateCLIENTES($filter: ModelSubscriptionCLIENTESFilterInput) {
+    onUpdateCLIENTES(filter: $filter) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteCLIENTES = /* GraphQL */ `
+  subscription OnDeleteCLIENTES($filter: ModelSubscriptionCLIENTESFilterInput) {
+    onDeleteCLIENTES(filter: $filter) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateStockInventariosBotellas = /* GraphQL */ `
   subscription OnCreateStockInventariosBotellas(
     $filter: ModelSubscriptionStockInventariosBotellasFilterInput

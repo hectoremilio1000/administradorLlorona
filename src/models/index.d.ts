@@ -14,6 +14,10 @@ export enum Tipototal {
   CUADRA = "CUADRA"
 }
 
+type CLIENTESMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type StockInventariosBotellasMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -44,6 +48,42 @@ type InventarioMetaData = {
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerCLIENTES = {
+  readonly id: string;
+  readonly nombre?: string | null;
+  readonly cumple?: string | null;
+  readonly delegacion?: string | null;
+  readonly fechaLlegada?: string | null;
+  readonly HoraLlegada?: string | null;
+  readonly mesaAsignada?: string | null;
+  readonly numeroPersonas?: string | null;
+  readonly evento?: string | null;
+  readonly esReserva?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyCLIENTES = {
+  readonly id: string;
+  readonly nombre?: string | null;
+  readonly cumple?: string | null;
+  readonly delegacion?: string | null;
+  readonly fechaLlegada?: string | null;
+  readonly HoraLlegada?: string | null;
+  readonly mesaAsignada?: string | null;
+  readonly numeroPersonas?: string | null;
+  readonly evento?: string | null;
+  readonly esReserva?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type CLIENTES = LazyLoading extends LazyLoadingDisabled ? EagerCLIENTES : LazyCLIENTES
+
+export declare const CLIENTES: (new (init: ModelInit<CLIENTES, CLIENTESMetaData>) => CLIENTES) & {
+  copyOf(source: CLIENTES, mutator: (draft: MutableModel<CLIENTES, CLIENTESMetaData>) => MutableModel<CLIENTES, CLIENTESMetaData> | void): CLIENTES;
 }
 
 type EagerStockInventariosBotellas = {

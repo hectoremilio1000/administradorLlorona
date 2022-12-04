@@ -10,8 +10,8 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-11-23T13:32:49.102Z",
-              "description": "apiproductosbotellas"
+              "apiKeyExpirationDate": "2023-12-04T22:36:13.075Z",
+              "description": "apiClientesNuevo"
             }
           },
           "additionalAuthenticationProviders": [

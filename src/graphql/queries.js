@@ -1,6 +1,91 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCLIENTES = /* GraphQL */ `
+  query GetCLIENTES($id: ID!) {
+    getCLIENTES(id: $id) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCLIENTES = /* GraphQL */ `
+  query ListCLIENTES(
+    $filter: ModelCLIENTESFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCLIENTES(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        nombre
+        cumple
+        delegacion
+        fechaLlegada
+        HoraLlegada
+        mesaAsignada
+        numeroPersonas
+        evento
+        esReserva
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCLIENTES = /* GraphQL */ `
+  query SyncCLIENTES(
+    $filter: ModelCLIENTESFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCLIENTES(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        nombre
+        cumple
+        delegacion
+        fechaLlegada
+        HoraLlegada
+        mesaAsignada
+        numeroPersonas
+        evento
+        esReserva
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getStockInventariosBotellas = /* GraphQL */ `
   query GetStockInventariosBotellas($id: ID!) {
     getStockInventariosBotellas(id: $id) {

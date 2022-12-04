@@ -14,11 +14,15 @@ import CrearBotella from '../modules/Botellas/CrearBotella';
 
 import EditarBotellas from '../modules/EditarBotellas';
 import InventariosBotellasLista from '../modules/InventariosBotellasLista';
+import CrearCliente from '../modules/Clientes/CrearCliente/CrearCliente';
+import ListaClientes from '../modules/Clientes/ListaClientes';
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Inicio />} />
+      {/* route admin */}
+      <Route path="/admin" element={<Inicio />} />
 
       {/* Producto*/}
       <Route path="producto" element={<Producto />} />
@@ -39,6 +43,11 @@ function AppRoutes() {
       <Route path="botella" element={<CrearBotella />} />
       <Route path="listabotellas" element={<InventariosBotellasLista />} />
       <Route path="listabotellas/:id" element={<EditarBotellas />} />
+
+      {/* Clientes*/}
+      <Route path="cliente" element={<CrearCliente />} />
+      <Route path="listaclientes" element={<ListaClientes />} />
+      {/* <Route path="listabotellas/:id" element={<EditarBotellas />} /> */}
     </Routes>
   );
 }

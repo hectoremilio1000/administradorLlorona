@@ -56,6 +56,14 @@ function SideMenu() {
       label: "Lista Empresas",
     },
     {
+      key: "listaclientes",
+      label: "Lista Clientes",
+    },
+    {
+      key: "cliente",
+      label: "Crear Cliente",
+    },
+    {
       key: "signOut",
       label: "Sign out",
       danger: "true",

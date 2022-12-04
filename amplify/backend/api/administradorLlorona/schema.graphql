@@ -1,3 +1,16 @@
+type CLIENTES @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nombre: String
+  cumple: String
+  delegacion: String
+  fechaLlegada: String
+  HoraLlegada: String
+  mesaAsignada: String
+  numeroPersonas: String
+  evento: String
+  esReserva: String
+}
+
 enum TIPOTOTALBOTELLAS {
   SOBRANTE
   FALTANTE

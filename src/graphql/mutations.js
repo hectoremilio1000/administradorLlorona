@@ -1,6 +1,78 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCLIENTES = /* GraphQL */ `
+  mutation CreateCLIENTES(
+    $input: CreateCLIENTESInput!
+    $condition: ModelCLIENTESConditionInput
+  ) {
+    createCLIENTES(input: $input, condition: $condition) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCLIENTES = /* GraphQL */ `
+  mutation UpdateCLIENTES(
+    $input: UpdateCLIENTESInput!
+    $condition: ModelCLIENTESConditionInput
+  ) {
+    updateCLIENTES(input: $input, condition: $condition) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCLIENTES = /* GraphQL */ `
+  mutation DeleteCLIENTES(
+    $input: DeleteCLIENTESInput!
+    $condition: ModelCLIENTESConditionInput
+  ) {
+    deleteCLIENTES(input: $input, condition: $condition) {
+      id
+      nombre
+      cumple
+      delegacion
+      fechaLlegada
+      HoraLlegada
+      mesaAsignada
+      numeroPersonas
+      evento
+      esReserva
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createStockInventariosBotellas = /* GraphQL */ `
   mutation CreateStockInventariosBotellas(
     $input: CreateStockInventariosBotellasInput!

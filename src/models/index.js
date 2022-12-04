@@ -14,9 +14,10 @@ const Tipototal = {
   "CUADRA": "CUADRA"
 };
 
-const { StockInventariosBotellas, InventarioBotellas, ProductosBotellas, Empresa, Hotel, StockEventInventario, Inventario, Products } = initSchema(schema);
+const { CLIENTES, StockInventariosBotellas, InventarioBotellas, ProductosBotellas, Empresa, Hotel, StockEventInventario, Inventario, Products } = initSchema(schema);
 
 export {
+  CLIENTES,
   StockInventariosBotellas,
   InventarioBotellas,
   ProductosBotellas,
