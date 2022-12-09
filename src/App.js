@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Layout, Image } from "antd";
 import { Amplify, I18n } from "aws-amplify";
 import awsconfig from "./aws-exports";
@@ -7,10 +8,10 @@ import "./App.css";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import SideMenu from "../src/components/SideMenu";
-import AppRoutes from './components/AppRoutes';
-import ProductContextProvider from './components/contexts/ProductContext';
+import AppRoutes from "./components/AppRoutes";
+import ProductContextProvider from "./components/contexts/ProductContext";
 import HotelContextProvider from "./components/contexts/HotelContext";
-import AuthContextProvider from './components/contexts/AuthContext';
+import AuthContextProvider from "./components/contexts/AuthContext";
 
 I18n.putVocabularies(translations);
 I18n.setLanguage("es");
@@ -35,15 +36,29 @@ const { Sider, Content, Footer } = Layout;
 
 Amplify.configure(awsconfig);
 
-
 function App() {
+  const [collapsed, setCollapsed] = useState(false);
+  const [current, setCurrent] = useState("");
+  const toggle = () => {
+    setCollapsed(!collapsed);
+  };
+
+   const cambiarComponent = e => {
+     setCurrent(e.key);
+   };
+
   return (
     <Authenticator loginMechanisms={["email"]}>
       <AuthContextProvider>
         <ProductContextProvider>
           <HotelContextProvider>
             <Layout>
-              <Sider style={{ height: "100vh", backgroundColor: "white" }}>
+              <Sider
+                style={{ height: "100vh", backgroundColor: "white" }}
+                trigger={null}
+                collapsible
+                collapsed={collapsed}
+              >
                 <Image
                   src="https://imagenesrutalab.s3.amazonaws.com/llorona/cantina/logo/logo_page_alta.png"
                   preview={false}
