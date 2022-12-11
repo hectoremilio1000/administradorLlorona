@@ -22,6 +22,7 @@ function CorteInventario({ id }) {
   const [tipoTotal, setTipoTotal] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [invMes, setInvMes] = useState("");
+  const [comprasCeroFinal, setComprasCeroFinal] = useState("")
 
   const [showEditar, setShowEditar] = useState(false);
 
@@ -44,7 +45,7 @@ function CorteInventario({ id }) {
   // fetch stockCompras
   const FetchCompras = async () => {
     const ComprasTotales = await DataStore.query(StockEventInventario, stock =>
-      stock.inventarioID("eq", id)
+      stock.inventarioID.eq( id)
     );
     setEventCompras(ComprasTotales);
   };
@@ -119,14 +120,32 @@ function CorteInventario({ id }) {
         message.error("contacta al administrador");
       }
     };
+  
+   const ComprasCero = async () => {
+     try {
+       await DataStore.save(
+         Inventario.copyOf(inventario, updated => {
+           updated.compras = 0;
+         })
+       );
 
+       window.location.reload(false);
+       message.success("inventario final generado correctamente");
+     } catch (error) {
+       console.log(error);
+       message.error("contacta al administrador");
+     }
+   };
+  
+  
+
+  
 
   return (
     <div key={id}>
       {/* <BorrarInventario id={id} /> */}
       {inventario?.fechaInicioConteoFisico &&
-        inventario?.fechaFinConteoFisico &&
-         (
+        inventario?.fechaFinConteoFisico && (
           <Card key={id}>
             <Typography.Text type="default">
               Inventario id: {id}
@@ -164,7 +183,7 @@ function CorteInventario({ id }) {
                 <Col span={4}>Cantidad Sob/Falt</Col>
                 <Col span={4}>Sob/Falt</Col>
                 {inventario?.inventarioInicialFisico &&
-                inventario?.compras &&
+                (inventario?.compras || inventario?.compras === 0) &&
                 inventario?.ventas &&
                 inventario?.inventarioFinalFisico ? (
                   <Col span={4}>
@@ -194,7 +213,27 @@ function CorteInventario({ id }) {
               </Row>
             </>
             <Divider />
-            {!inventario?.compras && (
+            {(!inventario?.compras || inventario?.compras === 0) && (
+              <Card>
+                <Typography.Text>
+                  Si las compras durante el período son igual a cero da click
+                  aquí
+                </Typography.Text>
+                <Button onClick={ComprasCero} style={{background:'green', color:"white"}}>Guardar Compras en cero</Button>
+              {/* <Button onClick={() => {
+                // let DefineCero = parseFloat()
+                if (inventario?.compras === 0) {
+                  console.log(true)
+                }
+                else {
+                  console.log(false)
+                }
+              }
+                
+                }>SEE Compras</Button> */}
+              </Card>
+            )}
+            {!inventario?.compras ? (
               <Button
                 type="primary"
                 onClick={ShowCompras}
@@ -202,17 +241,14 @@ function CorteInventario({ id }) {
               >
                 Mostrar Compras
               </Button>
+            ) : (
+              <></>
             )}
             {mostrarCompras && !inventario?.compras && (
               <Card>
                 <MostrarCompras id={id} />
               </Card>
             )}
-            {/* {showEditar && !inventario?.compras && (
-              <Card title="Editar Inventario">
-                <Compras id={id} />
-              </Card>
-            )} */}
           </Card>
         )}
     </div>

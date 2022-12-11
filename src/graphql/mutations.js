@@ -1,6 +1,204 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createStockEventArtesanal = /* GraphQL */ `
+  mutation CreateStockEventArtesanal(
+    $input: CreateStockEventArtesanalInput!
+    $condition: ModelStockEventArtesanalConditionInput
+  ) {
+    createStockEventArtesanal(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateStockEventArtesanal = /* GraphQL */ `
+  mutation UpdateStockEventArtesanal(
+    $input: UpdateStockEventArtesanalInput!
+    $condition: ModelStockEventArtesanalConditionInput
+  ) {
+    updateStockEventArtesanal(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteStockEventArtesanal = /* GraphQL */ `
+  mutation DeleteStockEventArtesanal(
+    $input: DeleteStockEventArtesanalInput!
+    $condition: ModelStockEventArtesanalConditionInput
+  ) {
+    deleteStockEventArtesanal(input: $input, condition: $condition) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createCERVEZAARTESANAL = /* GraphQL */ `
+  mutation CreateCERVEZAARTESANAL(
+    $input: CreateCERVEZAARTESANALInput!
+    $condition: ModelCERVEZAARTESANALConditionInput
+  ) {
+    createCERVEZAARTESANAL(input: $input, condition: $condition) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCERVEZAARTESANAL = /* GraphQL */ `
+  mutation UpdateCERVEZAARTESANAL(
+    $input: UpdateCERVEZAARTESANALInput!
+    $condition: ModelCERVEZAARTESANALConditionInput
+  ) {
+    updateCERVEZAARTESANAL(input: $input, condition: $condition) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCERVEZAARTESANAL = /* GraphQL */ `
+  mutation DeleteCERVEZAARTESANAL(
+    $input: DeleteCERVEZAARTESANALInput!
+    $condition: ModelCERVEZAARTESANALConditionInput
+  ) {
+    deleteCERVEZAARTESANAL(input: $input, condition: $condition) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createINVCERVARTESANAL = /* GraphQL */ `
+  mutation CreateINVCERVARTESANAL(
+    $input: CreateINVCERVARTESANALInput!
+    $condition: ModelINVCERVARTESANALConditionInput
+  ) {
+    createINVCERVARTESANAL(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateINVCERVARTESANAL = /* GraphQL */ `
+  mutation UpdateINVCERVARTESANAL(
+    $input: UpdateINVCERVARTESANALInput!
+    $condition: ModelINVCERVARTESANALConditionInput
+  ) {
+    updateINVCERVARTESANAL(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteINVCERVARTESANAL = /* GraphQL */ `
+  mutation DeleteINVCERVARTESANAL(
+    $input: DeleteINVCERVARTESANALInput!
+    $condition: ModelINVCERVARTESANALConditionInput
+  ) {
+    deleteINVCERVARTESANAL(input: $input, condition: $condition) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createCLIENTES = /* GraphQL */ `
   mutation CreateCLIENTES(
     $input: CreateCLIENTESInput!

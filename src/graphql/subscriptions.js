@@ -1,6 +1,195 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateStockEventArtesanal = /* GraphQL */ `
+  subscription OnCreateStockEventArtesanal(
+    $filter: ModelSubscriptionStockEventArtesanalFilterInput
+  ) {
+    onCreateStockEventArtesanal(filter: $filter) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateStockEventArtesanal = /* GraphQL */ `
+  subscription OnUpdateStockEventArtesanal(
+    $filter: ModelSubscriptionStockEventArtesanalFilterInput
+  ) {
+    onUpdateStockEventArtesanal(filter: $filter) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteStockEventArtesanal = /* GraphQL */ `
+  subscription OnDeleteStockEventArtesanal(
+    $filter: ModelSubscriptionStockEventArtesanalFilterInput
+  ) {
+    onDeleteStockEventArtesanal(filter: $filter) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateCERVEZAARTESANAL = /* GraphQL */ `
+  subscription OnCreateCERVEZAARTESANAL(
+    $filter: ModelSubscriptionCERVEZAARTESANALFilterInput
+  ) {
+    onCreateCERVEZAARTESANAL(filter: $filter) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateCERVEZAARTESANAL = /* GraphQL */ `
+  subscription OnUpdateCERVEZAARTESANAL(
+    $filter: ModelSubscriptionCERVEZAARTESANALFilterInput
+  ) {
+    onUpdateCERVEZAARTESANAL(filter: $filter) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteCERVEZAARTESANAL = /* GraphQL */ `
+  subscription OnDeleteCERVEZAARTESANAL(
+    $filter: ModelSubscriptionCERVEZAARTESANALFilterInput
+  ) {
+    onDeleteCERVEZAARTESANAL(filter: $filter) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateINVCERVARTESANAL = /* GraphQL */ `
+  subscription OnCreateINVCERVARTESANAL(
+    $filter: ModelSubscriptionINVCERVARTESANALFilterInput
+  ) {
+    onCreateINVCERVARTESANAL(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateINVCERVARTESANAL = /* GraphQL */ `
+  subscription OnUpdateINVCERVARTESANAL(
+    $filter: ModelSubscriptionINVCERVARTESANALFilterInput
+  ) {
+    onUpdateINVCERVARTESANAL(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteINVCERVARTESANAL = /* GraphQL */ `
+  subscription OnDeleteINVCERVARTESANAL(
+    $filter: ModelSubscriptionINVCERVARTESANALFilterInput
+  ) {
+    onDeleteINVCERVARTESANAL(filter: $filter) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateCLIENTES = /* GraphQL */ `
   subscription OnCreateCLIENTES($filter: ModelSubscriptionCLIENTESFilterInput) {
     onCreateCLIENTES(filter: $filter) {

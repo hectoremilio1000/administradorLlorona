@@ -45,7 +45,7 @@ function Compras({ id }) {
       <Typography.Title level={5} style={{ color: "green" }}>
         Sólo se pueden agregar compras en este momento, si capturaste mal algo
         en "ventas", "inventario físico inicial"..., elimina el inventario y
-        vuelve a ingresarlo
+        vuelve a ingresarlo.
       </Typography.Title>
       <Form onFinish={onFinish} key={id}>
         <Form.Item label="cantidad" name="cantidad" style={{ width: 200 }}>
@@ -54,6 +54,7 @@ function Compras({ id }) {
         <Form.Item label="fecha" name="fecha">
           <DatePicker placeholder="fecha" onChange={SelectDate} />
         </Form.Item>
+        
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Guardar Compra

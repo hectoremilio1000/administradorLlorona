@@ -14,7 +14,7 @@ import {
 import { DataStore, Amplify } from "aws-amplify";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../../contexts/ProductContext";
-import { Inventario, Products } from "../../../models";
+import { Inventario, Products, StockEventInventario } from "../../../models";
 import { useNavigate } from "react-router-dom";
 import NuevoInventario from '../NuevoInventario';
 import CorteInventario from '../../CorteInventario/CorteInventario';
@@ -53,11 +53,10 @@ function EditarInventario() {
     fetchProducto();
   }, [id]);
 
+ 
   const fetchInventary = async () => {
-    const inventarioId = await DataStore.query(Inventario, inventario =>
-      inventario.productsID("eq", id)
-    );
-    setInventarioProducto(inventarioId);
+    const inventarioCerveza = await DataStore.query(Inventario, u => u.productsID.eq(id))
+    setInventarioProducto(inventarioCerveza);
   };
 
   useEffect(() => {
@@ -66,6 +65,8 @@ function EditarInventario() {
     }
     fetchInventary();
   }, [id]);
+
+  console.log(inventarioProducto);
 
   const EliminarProducto = async () => {
     await DataStore.delete(Products, id);
@@ -148,7 +149,7 @@ function EditarInventario() {
             );
           })
         ) : (
-          <div></div>
+          <></>
         )}
       </Card>
     </Card>

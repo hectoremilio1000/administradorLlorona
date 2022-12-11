@@ -2,16 +2,28 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
+export enum Tipototal {
+  SOBRANTE = "SOBRANTE",
+  FALTANTE = "FALTANTE",
+  CUADRA = "CUADRA"
+}
+
 export enum Tipototalbotellas {
   SOBRANTE = "SOBRANTE",
   FALTANTE = "FALTANTE",
   CUADRA = "CUADRA"
 }
 
-export enum Tipototal {
-  SOBRANTE = "SOBRANTE",
-  FALTANTE = "FALTANTE",
-  CUADRA = "CUADRA"
+type StockEventArtesanalMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type CERVEZAARTESANALMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type INVCERVARTESANALMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type CLIENTESMetaData = {
@@ -48,6 +60,90 @@ type InventarioMetaData = {
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerStockEventArtesanal = {
+  readonly id: string;
+  readonly quantity?: number | null;
+  readonly fecha?: string | null;
+  readonly invcervartesanalID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyStockEventArtesanal = {
+  readonly id: string;
+  readonly quantity?: number | null;
+  readonly fecha?: string | null;
+  readonly invcervartesanalID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type StockEventArtesanal = LazyLoading extends LazyLoadingDisabled ? EagerStockEventArtesanal : LazyStockEventArtesanal
+
+export declare const StockEventArtesanal: (new (init: ModelInit<StockEventArtesanal, StockEventArtesanalMetaData>) => StockEventArtesanal) & {
+  copyOf(source: StockEventArtesanal, mutator: (draft: MutableModel<StockEventArtesanal, StockEventArtesanalMetaData>) => MutableModel<StockEventArtesanal, StockEventArtesanalMetaData> | void): StockEventArtesanal;
+}
+
+type EagerCERVEZAARTESANAL = {
+  readonly id: string;
+  readonly nam?: string | null;
+  readonly INVCERVARTESANALS?: (INVCERVARTESANAL | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyCERVEZAARTESANAL = {
+  readonly id: string;
+  readonly nam?: string | null;
+  readonly INVCERVARTESANALS: AsyncCollection<INVCERVARTESANAL>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type CERVEZAARTESANAL = LazyLoading extends LazyLoadingDisabled ? EagerCERVEZAARTESANAL : LazyCERVEZAARTESANAL
+
+export declare const CERVEZAARTESANAL: (new (init: ModelInit<CERVEZAARTESANAL, CERVEZAARTESANALMetaData>) => CERVEZAARTESANAL) & {
+  copyOf(source: CERVEZAARTESANAL, mutator: (draft: MutableModel<CERVEZAARTESANAL, CERVEZAARTESANALMetaData>) => MutableModel<CERVEZAARTESANAL, CERVEZAARTESANALMetaData> | void): CERVEZAARTESANAL;
+}
+
+type EagerINVCERVARTESANAL = {
+  readonly id: string;
+  readonly inventarioInicialFisico?: number | null;
+  readonly inventarioFinalFisico?: number | null;
+  readonly fechaInicioConteoFisico?: string | null;
+  readonly fechaFinConteoFisico?: string | null;
+  readonly total?: number | null;
+  readonly ventas?: number | null;
+  readonly compras?: number | null;
+  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly cervezaartesanalID: string;
+  readonly StockEventArtesanals?: (StockEventArtesanal | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyINVCERVARTESANAL = {
+  readonly id: string;
+  readonly inventarioInicialFisico?: number | null;
+  readonly inventarioFinalFisico?: number | null;
+  readonly fechaInicioConteoFisico?: string | null;
+  readonly fechaFinConteoFisico?: string | null;
+  readonly total?: number | null;
+  readonly ventas?: number | null;
+  readonly compras?: number | null;
+  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly cervezaartesanalID: string;
+  readonly StockEventArtesanals: AsyncCollection<StockEventArtesanal>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type INVCERVARTESANAL = LazyLoading extends LazyLoadingDisabled ? EagerINVCERVARTESANAL : LazyINVCERVARTESANAL
+
+export declare const INVCERVARTESANAL: (new (init: ModelInit<INVCERVARTESANAL, INVCERVARTESANALMetaData>) => INVCERVARTESANAL) & {
+  copyOf(source: INVCERVARTESANAL, mutator: (draft: MutableModel<INVCERVARTESANAL, INVCERVARTESANALMetaData>) => MutableModel<INVCERVARTESANAL, INVCERVARTESANALMetaData> | void): INVCERVARTESANAL;
 }
 
 type EagerCLIENTES = {

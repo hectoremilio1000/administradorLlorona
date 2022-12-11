@@ -104,9 +104,9 @@ key: "signOut", label: "Salir", danger: "true", icon:<FileDoneOutlined/>
       getItem("Inicio", "/", <ExportOutlined />),
       getItem("Clientes", "sub5", <AppstoreOutlined />, [
         getItem("Lista Clientes", "listaclientes", <GroupOutlined />),
-        getItem("Crear Cliente", "crearhotel", <PlusCircleOutlined />),
+        getItem("Crear Cliente", "crearcliente", <PlusCircleOutlined />),
       ]),
-   
+
       {
         key: "signOut",
         label: "Salir",
@@ -118,25 +118,25 @@ key: "signOut", label: "Salir", danger: "true", icon:<FileDoneOutlined/>
   
   const directorMenuItems = [
     getItem("Inicio", "/", <ExportOutlined />),
-    getItem("Inv Cerveza Ind", "sub6", <AppstoreOutlined />, [
+    getItem("Inv Cerveza Ind", "sub1", <AppstoreOutlined />, [
       getItem("Lista Cervezas", "inventario", <GroupOutlined />),
       getItem("Crear Cerveza", "producto", <PlusCircleOutlined />),
     ]),
-    getItem("Inv Botellas", "sub7", <MonitorOutlined />, [
+    getItem("Inv Botellas", "sub2", <MonitorOutlined />, [
       getItem("Inventario Botellas", "listabotellas", <GroupOutlined />),
       getItem("Crear Botella", "botella", <PlusCircleOutlined />),
     ]),
-    getItem("Hotel", "sub8", <ReconciliationOutlined />, [
+    getItem("Hotel", "sub3", <ReconciliationOutlined />, [
       getItem("Lista Hoteles", "listahoteles", <GroupOutlined />),
       getItem("Crear Hotel", "crearhotel", <PlusCircleOutlined />),
     ]),
-    getItem("Empresas", "sub9", <MenuFoldOutlined />, [
+    getItem("Empresas", "sub4", <MenuFoldOutlined />, [
       getItem("Lista Empresas", "listaempresas", <GroupOutlined />),
       getItem("Crear Empresa", "crearempresa", <PlusCircleOutlined />),
     ]),
-    getItem("Clientes", "sub10", <VerticalRightOutlined />, [
+    getItem("Clientes", "sub5", <VerticalRightOutlined />, [
       getItem("Lista Clientes", "listaclientes", <GroupOutlined />),
-      getItem("Crear Cliente", "crearhotel", <PlusCircleOutlined />),
+      getItem("Crear Cliente", "crearcliente", <PlusCircleOutlined />),
     ]),
 
     {

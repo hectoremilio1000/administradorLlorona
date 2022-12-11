@@ -45,7 +45,7 @@ function AppRoutes() {
       <Route path="listabotellas/:id" element={<EditarBotellas />} />
 
       {/* Clientes*/}
-      <Route path="cliente" element={<CrearCliente />} />
+      <Route path="crearcliente" element={<CrearCliente />} />
       <Route path="listaclientes" element={<ListaClientes />} />
       {/* <Route path="listabotellas/:id" element={<EditarBotellas />} /> */}
     </Routes>

@@ -1,5 +1,300 @@
 export const schema = {
     "models": {
+        "StockEventArtesanal": {
+            "name": "StockEventArtesanal",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "quantity": {
+                    "name": "quantity",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fecha": {
+                    "name": "fecha",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "invcervartesanalID": {
+                    "name": "invcervartesanalID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "StockEventArtesanals",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byINVCERVARTESANAL",
+                        "fields": [
+                            "invcervartesanalID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "CERVEZAARTESANAL": {
+            "name": "CERVEZAARTESANAL",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "nam": {
+                    "name": "nam",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "INVCERVARTESANALS": {
+                    "name": "INVCERVARTESANALS",
+                    "isArray": true,
+                    "type": {
+                        "model": "INVCERVARTESANAL"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "cervezaartesanalID"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "CERVEZAARTESANALS",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "INVCERVARTESANAL": {
+            "name": "INVCERVARTESANAL",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "inventarioInicialFisico": {
+                    "name": "inventarioInicialFisico",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "inventarioFinalFisico": {
+                    "name": "inventarioFinalFisico",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fechaInicioConteoFisico": {
+                    "name": "fechaInicioConteoFisico",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fechaFinConteoFisico": {
+                    "name": "fechaFinConteoFisico",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "total": {
+                    "name": "total",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ventas": {
+                    "name": "ventas",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "compras": {
+                    "name": "compras",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "tipoTotal": {
+                    "name": "tipoTotal",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Tipototal"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "cervezaartesanalID": {
+                    "name": "cervezaartesanalID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "StockEventArtesanals": {
+                    "name": "StockEventArtesanals",
+                    "isArray": true,
+                    "type": {
+                        "model": "StockEventArtesanal"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "invcervartesanalID"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "INVCERVARTESANALS",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byCERVEZAARTESANAL",
+                        "fields": [
+                            "cervezaartesanalID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "CLIENTES": {
             "name": "CLIENTES",
             "fields": {
@@ -895,16 +1190,16 @@ export const schema = {
         }
     },
     "enums": {
-        "Tipototalbotellas": {
-            "name": "Tipototalbotellas",
+        "Tipototal": {
+            "name": "Tipototal",
             "values": [
                 "SOBRANTE",
                 "FALTANTE",
                 "CUADRA"
             ]
         },
-        "Tipototal": {
-            "name": "Tipototal",
+        "Tipototalbotellas": {
+            "name": "Tipototalbotellas",
             "values": [
                 "SOBRANTE",
                 "FALTANTE",
@@ -914,5 +1209,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "d8820a2809b8e064e11de4f114b6f926"
+    "version": "d52731363b3ede776a45f19561c62907"
 };

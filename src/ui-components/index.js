@@ -5,6 +5,8 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
+export { default as CERVEZAARTESANALCreateForm } from "./CERVEZAARTESANALCreateForm";
+export { default as CERVEZAARTESANALUpdateForm } from "./CERVEZAARTESANALUpdateForm";
 export { default as CLIENTESCreateForm } from "./CLIENTESCreateForm";
 export { default as CLIENTESUpdateForm } from "./CLIENTESUpdateForm";
 export { default as ProductosBotellasCreateForm } from "./ProductosBotellasCreateForm";

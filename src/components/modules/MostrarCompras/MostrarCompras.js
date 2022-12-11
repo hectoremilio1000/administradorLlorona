@@ -1,4 +1,4 @@
-import { Button, Divider, List, message, Table, Typography } from "antd";
+import { Button, Divider, List, message, Space, Table, Typography } from "antd";
 import { DataStore } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { Inventario, StockEventInventario } from "../../../models";
@@ -28,7 +28,7 @@ function MostrarCompras({ id }) {
 
     const stockEventsFetched = await DataStore.query(
       StockEventInventario,
-      compras => compras.inventarioID("eq", id)
+      compras => compras.inventarioID.eq(id)
     );
     setEventoCompra(stockEventsFetched);
   };
@@ -73,6 +73,20 @@ function MostrarCompras({ id }) {
     }
   };
 
+  const borrarCompraID = async () => {
+    try {
+      const todeleteEvent = await DataStore.query(StockEventInventario, st => st.inventarioID.eq(id));
+      DataStore.delete(StockEventInventario, todeleteEvent[0]?.id);
+      
+      window.location.reload(false);
+      message.success('compra borrada');
+    } catch (error) {
+      // message.antd('contacta al administrador')
+      console.log(error)
+    }
+    
+    
+  }
     
   const AgregarCompra = () => {
     setMostrarAgregar(!mostrarAgregar);
@@ -96,7 +110,16 @@ function MostrarCompras({ id }) {
         dataIndex: "quantity",
         key: "quantity",
       },
+      {
+        title: "Borrar Compra",
+        key: "borrarcomprar",
+        render: (_, record) => (
+          <Button onClick={()=>{borrarCompraID(id)}}>Borrar</Button>
+        ),
+      },
     ];
+  
+  
   
 
   return (
@@ -127,8 +150,10 @@ function MostrarCompras({ id }) {
               }
               dataSource={data}
               renderItem={item => <List.Item>{item}</List.Item>}
-              key={id}
-            />
+               
+                rowKey={id}
+              />
+              
           )}
           {mostrarAgregar ? <Compras id={id} /> : <> </>}
           <div>

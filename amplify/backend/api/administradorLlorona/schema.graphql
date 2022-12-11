@@ -1,3 +1,30 @@
+type StockEventArtesanal @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Float
+  fecha: String
+  invcervartesanalID: ID! @index(name: "byINVCERVARTESANAL")
+}
+
+type CERVEZAARTESANAL @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nam: String
+  INVCERVARTESANALS: [INVCERVARTESANAL] @hasMany(indexName: "byCERVEZAARTESANAL", fields: ["id"])
+}
+
+type INVCERVARTESANAL @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  inventarioInicialFisico: Float
+  inventarioFinalFisico: Float
+  fechaInicioConteoFisico: String
+  fechaFinConteoFisico: String
+  total: Float
+  ventas: Float
+  compras: Float
+  tipoTotal: TIPOTOTAL
+  cervezaartesanalID: ID! @index(name: "byCERVEZAARTESANAL")
+  StockEventArtesanals: [StockEventArtesanal] @hasMany(indexName: "byINVCERVARTESANAL", fields: ["id"])
+}
+
 type CLIENTES @model @auth(rules: [{allow: public}]) {
   id: ID!
   nombre: String

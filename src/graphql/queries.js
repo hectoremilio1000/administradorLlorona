@@ -1,6 +1,239 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getStockEventArtesanal = /* GraphQL */ `
+  query GetStockEventArtesanal($id: ID!) {
+    getStockEventArtesanal(id: $id) {
+      id
+      quantity
+      fecha
+      invcervartesanalID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listStockEventArtesanals = /* GraphQL */ `
+  query ListStockEventArtesanals(
+    $filter: ModelStockEventArtesanalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listStockEventArtesanals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        quantity
+        fecha
+        invcervartesanalID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncStockEventArtesanals = /* GraphQL */ `
+  query SyncStockEventArtesanals(
+    $filter: ModelStockEventArtesanalFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncStockEventArtesanals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        quantity
+        fecha
+        invcervartesanalID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getCERVEZAARTESANAL = /* GraphQL */ `
+  query GetCERVEZAARTESANAL($id: ID!) {
+    getCERVEZAARTESANAL(id: $id) {
+      id
+      nam
+      INVCERVARTESANALS {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCERVEZAARTESANALS = /* GraphQL */ `
+  query ListCERVEZAARTESANALS(
+    $filter: ModelCERVEZAARTESANALFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCERVEZAARTESANALS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        nam
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCERVEZAARTESANALS = /* GraphQL */ `
+  query SyncCERVEZAARTESANALS(
+    $filter: ModelCERVEZAARTESANALFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCERVEZAARTESANALS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        nam
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getINVCERVARTESANAL = /* GraphQL */ `
+  query GetINVCERVARTESANAL($id: ID!) {
+    getINVCERVARTESANAL(id: $id) {
+      id
+      inventarioInicialFisico
+      inventarioFinalFisico
+      fechaInicioConteoFisico
+      fechaFinConteoFisico
+      total
+      ventas
+      compras
+      tipoTotal
+      cervezaartesanalID
+      StockEventArtesanals {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listINVCERVARTESANALS = /* GraphQL */ `
+  query ListINVCERVARTESANALS(
+    $filter: ModelINVCERVARTESANALFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listINVCERVARTESANALS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        inventarioInicialFisico
+        inventarioFinalFisico
+        fechaInicioConteoFisico
+        fechaFinConteoFisico
+        total
+        ventas
+        compras
+        tipoTotal
+        cervezaartesanalID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncINVCERVARTESANALS = /* GraphQL */ `
+  query SyncINVCERVARTESANALS(
+    $filter: ModelINVCERVARTESANALFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncINVCERVARTESANALS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        inventarioInicialFisico
+        inventarioFinalFisico
+        fechaInicioConteoFisico
+        fechaFinConteoFisico
+        total
+        ventas
+        compras
+        tipoTotal
+        cervezaartesanalID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getCLIENTES = /* GraphQL */ `
   query GetCLIENTES($id: ID!) {
     getCLIENTES(id: $id) {
