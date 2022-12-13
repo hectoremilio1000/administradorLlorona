@@ -1,7 +1,8 @@
-import { Button, Divider, List, message, Space, Table, Typography } from "antd";
+import { Button, Divider, List, message, Table, Typography } from "antd";
 import { DataStore } from "aws-amplify";
 import React, { useState, useEffect } from "react";
-import { Inventario, StockEventInventario } from "../../../models";
+import { INVCERVARTESANAL, StockEventArtesanal } from "../../../../models";
+
 import Compras from '../Compras/Compras';
 
 function MostrarCompras({ id }) {
@@ -11,7 +12,7 @@ function MostrarCompras({ id }) {
   const [mostrarAgregar, setMostrarAgregar] = useState(false);
 
     const fetchedInventario = async () => {
-      const InventarioNuevo = await DataStore.query(Inventario, id);
+      const InventarioNuevo = await DataStore.query(INVCERVARTESANAL, id);
       setInventario(InventarioNuevo);
     };
   
@@ -27,8 +28,8 @@ function MostrarCompras({ id }) {
     // setEventoCompra(stockEventsFetched);
 
     const stockEventsFetched = await DataStore.query(
-      StockEventInventario,
-      compras => compras.inventarioID.eq(id)
+      StockEventArtesanal,
+      compras => compras.invcervartesanalID.eq(id)
     );
     setEventoCompra(stockEventsFetched);
   };
@@ -49,7 +50,7 @@ function MostrarCompras({ id }) {
     let sum = 0;
     for (let i = 0; i < Max; i++) {
       sum += eventoCompra[i]?.quantity;
-      console.log(typeof sum);
+      // console.log(typeof sum);
     }
     setComprasInventario(parseFloat(sum));
   };
@@ -58,7 +59,7 @@ function MostrarCompras({ id }) {
   const GuardarComprasInvetario = async () => {
     try {
       await DataStore.save(
-        Inventario.copyOf(inventario, updated => {
+        INVCERVARTESANAL.copyOf(inventario, updated => {
           updated.compras = comprasInventario;
         })
       );
@@ -71,8 +72,8 @@ function MostrarCompras({ id }) {
 
   const borrarCompraID = async () => {
     try {
-      const todeleteEvent = await DataStore.query(StockEventInventario, st => st.inventarioID.eq(id));
-      DataStore.delete(StockEventInventario, todeleteEvent[0]?.id);
+      const todeleteEvent = await DataStore.query(StockEventArtesanal, st => st.inventarioID.eq(id));
+      DataStore.delete(StockEventArtesanal, todeleteEvent[0]?.id);
       
       window.location.reload(false);
       message.success('compra borrada');

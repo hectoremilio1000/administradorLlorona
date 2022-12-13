@@ -76,10 +76,21 @@ function SideMenu() {
     getItem("Inv Botellas", "sub2", <MonitorOutlined />, [
       getItem("Inventario Botellas", "listabotellas", <GroupOutlined />),
       getItem("Crear Botella", "botella", <PlusCircleOutlined />),
-    ]), ( {
-key: "signOut", label: "Salir", danger: "true", icon:<FileDoneOutlined/>
-      }),
-
+    ]),
+    getItem("Inv Cerv Artes", "sub6", <BranchesOutlined />, [
+      getItem("Crear Cerveza Art", "cervezaartesanal", <GroupOutlined />),
+      getItem(
+        "Crear Botella",
+        "inventariocervezaartesanal",
+        <PlusCircleOutlined />
+      ),
+    ]),
+    {
+      key: "signOut",
+      label: "Salir",
+      danger: "true",
+      icon: <FileDoneOutlined />,
+    },
   ];
 
   const estrategiaMenuVentas = [
@@ -121,6 +132,14 @@ key: "signOut", label: "Salir", danger: "true", icon:<FileDoneOutlined/>
     getItem("Inv Cerveza Ind", "sub1", <AppstoreOutlined />, [
       getItem("Lista Cervezas", "inventario", <GroupOutlined />),
       getItem("Crear Cerveza", "producto", <PlusCircleOutlined />),
+    ]),
+    getItem("Inv Cerv Artes", "sub6", <BranchesOutlined />, [
+      getItem("Crear Cerveza Art", "cervezaartesanal", <GroupOutlined />),
+      getItem(
+        "Lista Cerv Art",
+        "inventariocervezaartesanal",
+        <PlusCircleOutlined />
+      ),
     ]),
     getItem("Inv Botellas", "sub2", <MonitorOutlined />, [
       getItem("Inventario Botellas", "listabotellas", <GroupOutlined />),

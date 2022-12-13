@@ -2,13 +2,13 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
-export enum Tipototal {
+export enum Tipototalbotellas {
   SOBRANTE = "SOBRANTE",
   FALTANTE = "FALTANTE",
   CUADRA = "CUADRA"
 }
 
-export enum Tipototalbotellas {
+export enum Tipototal {
   SOBRANTE = "SOBRANTE",
   FALTANTE = "FALTANTE",
   CUADRA = "CUADRA"
@@ -117,7 +117,7 @@ type EagerINVCERVARTESANAL = {
   readonly total?: number | null;
   readonly ventas?: number | null;
   readonly compras?: number | null;
-  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly tipoTotal?: string | null;
   readonly cervezaartesanalID: string;
   readonly StockEventArtesanals?: (StockEventArtesanal | null)[] | null;
   readonly createdAt?: string | null;
@@ -133,7 +133,7 @@ type LazyINVCERVARTESANAL = {
   readonly total?: number | null;
   readonly ventas?: number | null;
   readonly compras?: number | null;
-  readonly tipoTotal?: Tipototal | keyof typeof Tipototal | null;
+  readonly tipoTotal?: string | null;
   readonly cervezaartesanalID: string;
   readonly StockEventArtesanals: AsyncCollection<StockEventArtesanal>;
   readonly createdAt?: string | null;

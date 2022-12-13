@@ -2,13 +2,13 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
-const Tipototal = {
+const Tipototalbotellas = {
   "SOBRANTE": "SOBRANTE",
   "FALTANTE": "FALTANTE",
   "CUADRA": "CUADRA"
 };
 
-const Tipototalbotellas = {
+const Tipototal = {
   "SOBRANTE": "SOBRANTE",
   "FALTANTE": "FALTANTE",
   "CUADRA": "CUADRA"
@@ -29,6 +29,6 @@ export {
   StockEventInventario,
   Inventario,
   Products,
-  Tipototal,
-  Tipototalbotellas
+  Tipototalbotellas,
+  Tipototal
 };

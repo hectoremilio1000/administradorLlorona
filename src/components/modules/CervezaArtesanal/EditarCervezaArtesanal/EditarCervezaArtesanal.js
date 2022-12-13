@@ -13,64 +13,62 @@ import {
 } from "antd";
 import { DataStore, Amplify } from "aws-amplify";
 import { useParams } from "react-router-dom";
-import { useProductContext } from "../../contexts/ProductContext";
-import { Inventario, Products, StockEventInventario } from "../../../models";
-import { useNavigate } from "react-router-dom";
-import NuevoInventario from '../NuevoInventario';
-import CorteInventario from '../../CorteInventario/CorteInventario';
 
+import { useNavigate } from "react-router-dom";
+import NuevoInventario from "../NuevoInventario";
+import CorteInventario from "../CorteInventario";
+import { CERVEZAARTESANAL, INVCERVARTESANAL } from "../../../../models";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Item } = Form;
 
-function EditarInventario() {
-  const [producto, setProducto] = useState("");
+function EditarCervezaArtesanal() {
+  const [cervezaArtesanal, setCervezaArtesanal] = useState("");
 
   const [mostrarEditarNombre, setMostrarEditarNombre] = useState(false);
   const [nuevoNombre, setNuevoNombre] = useState("");
 
-  const [inventarioProducto, setInventarioProducto] = useState("");
+  const [inventarioCervezaArtesanal, setInventarioCervezaArtesanal] = useState("");
 
   const [mostrarCrear, setMostrarCrear] = useState(false);
 
   const navigate = useNavigate();
 
-  let name = producto?.name;
+  let name = cervezaArtesanal?.nam;
+
 
   const { id } = useParams();
-  const { productos } = useProductContext();
+  
 
-  const fetchProducto = async () => {
+  const fetchCervezaArtesanal = async () => {
     try {
-      const product = await DataStore.query(Products, id);
-      setProducto(product);
+      const product = await DataStore.query(CERVEZAARTESANAL, id);
+      setCervezaArtesanal(product);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchProducto();
+    fetchCervezaArtesanal();
   }, [id]);
 
  
-  const fetchInventary = async () => {
-    const inventarioCerveza = await DataStore.query(Inventario, u => u.productsID.eq(id))
-    setInventarioProducto(inventarioCerveza);
+  const fetchInvArtesanal = async () => {
+    const inventaryCervezaArtesanalFinal = await DataStore.query(INVCERVARTESANAL, u=>u.cervezaartesanalID.eq(id))
+    setInventarioCervezaArtesanal(inventaryCervezaArtesanalFinal);
   };
 
   useEffect(() => {
     if (!id) {
       return;
     }
-    fetchInventary();
+    fetchInvArtesanal();
   }, [id]);
 
-  console.log(inventarioProducto);
-
   const EliminarProducto = async () => {
-    await DataStore.delete(Products, id);
+    await DataStore.delete(CERVEZAARTESANAL, id);
     navigate(-1);
   };
 
@@ -85,11 +83,11 @@ function EditarInventario() {
 
   const guardarNombre = async () => {
     const updateProducto = await DataStore.save(
-      Products.copyOf(producto, updated => {
-        updated.name = nuevoNombre;
+      CERVEZAARTESANAL.copyOf(CERVEZAARTESANAL, updated => {
+        updated.nam = nuevoNombre;
       })
     );
-    setProducto(updateProducto);
+    setCervezaArtesanal(updateProducto);
     // window.location.reload(false);
   };
 
@@ -117,7 +115,7 @@ function EditarInventario() {
           </Button> */}
         </div>
         <Divider />
-        <Title level={4}>Nombre del Producto: {name}</Title>
+        <Title level={4}>Nombre de la cerveza artesanal: {name}</Title>
         <Button type="primary" onClick={MostrarEditarNombre}>
           Editar Nombre del Producto
         </Button>
@@ -139,10 +137,10 @@ function EditarInventario() {
             </Card>
           )}
         </Card>
-        {inventarioProducto ? (
-          inventarioProducto.map(inventario => {
+        {inventarioCervezaArtesanal ? (
+          inventarioCervezaArtesanal.map(inventario => {
             const { id } = inventario;
-         
+
             return (
               <Card key={id}>
                 <CorteInventario id={id} />
@@ -157,4 +155,4 @@ function EditarInventario() {
   );
 }
 
-export default EditarInventario;
+export default EditarCervezaArtesanal;

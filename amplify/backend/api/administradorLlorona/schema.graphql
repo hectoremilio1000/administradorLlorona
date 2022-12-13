@@ -20,7 +20,7 @@ type INVCERVARTESANAL @model @auth(rules: [{allow: public}]) {
   total: Float
   ventas: Float
   compras: Float
-  tipoTotal: TIPOTOTAL
+  tipoTotal: String
   cervezaartesanalID: ID! @index(name: "byCERVEZAARTESANAL")
   StockEventArtesanals: [StockEventArtesanal] @hasMany(indexName: "byINVCERVARTESANAL", fields: ["id"])
 }

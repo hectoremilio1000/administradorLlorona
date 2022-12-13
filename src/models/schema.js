@@ -217,9 +217,7 @@ export const schema = {
                 "tipoTotal": {
                     "name": "tipoTotal",
                     "isArray": false,
-                    "type": {
-                        "enum": "Tipototal"
-                    },
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -1190,16 +1188,16 @@ export const schema = {
         }
     },
     "enums": {
-        "Tipototal": {
-            "name": "Tipototal",
+        "Tipototalbotellas": {
+            "name": "Tipototalbotellas",
             "values": [
                 "SOBRANTE",
                 "FALTANTE",
                 "CUADRA"
             ]
         },
-        "Tipototalbotellas": {
-            "name": "Tipototalbotellas",
+        "Tipototal": {
+            "name": "Tipototal",
             "values": [
                 "SOBRANTE",
                 "FALTANTE",
@@ -1209,5 +1207,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "d52731363b3ede776a45f19561c62907"
+    "version": "aa37980dda02df0e94ae6462a94a80e4"
 };

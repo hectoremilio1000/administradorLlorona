@@ -16,6 +16,9 @@ import EditarBotellas from '../modules/EditarBotellas';
 import InventariosBotellasLista from '../modules/InventariosBotellasLista';
 import CrearCliente from '../modules/Clientes/CrearCliente/CrearCliente';
 import ListaClientes from '../modules/Clientes/ListaClientes';
+import CrearCervezaArtesanal from '../modules/CervezaArtesanal/CrearCervezaArtesanal';
+import ListaCervezaArtesanal from '../modules/CervezaArtesanal/ListaCervezaArtesanal';
+import EditarCervezaArtesanal from '../modules/CervezaArtesanal/EditarCervezaArtesanal';
 
 function AppRoutes() {
   return (
@@ -24,10 +27,21 @@ function AppRoutes() {
       {/* route admin */}
       <Route path="/admin" element={<Inicio />} />
 
-      {/* Producto*/}
+      {/* Cerveza Industrial*/}
       <Route path="producto" element={<Producto />} />
       <Route path="inventario" element={<Inventario />} />
       <Route path="inventario/:id" element={<EditarInventario />} />
+
+      {/* Cerveza Artesanal*/}
+      <Route path="cervezaartesanal" element={<CrearCervezaArtesanal />} />
+      <Route
+        path="inventariocervezaartesanal"
+        element={<ListaCervezaArtesanal />}
+      />
+      <Route
+        path="inventariocervezaartesanal/:id"
+        element={<EditarCervezaArtesanal />}
+      />
 
       {/* Hoteles*/}
       <Route path="crearhotel" element={<CrearHotel />} />

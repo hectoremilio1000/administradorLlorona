@@ -10,9 +10,10 @@ import {
   Typography,
 } from "antd";
 import { DataStore } from "aws-amplify";
-import { Inventario, StockEventInventario } from "../../models";
+
 import { useNavigate } from "react-router-dom";
-import MostrarCompras from '../modules/MostrarCompras/MostrarCompras';
+import MostrarCompras from '../MostrarCompras';
+import { INVCERVARTESANAL, StockEventArtesanal } from "../../../../models";
 
 
 function CorteInventario({ id }) {
@@ -34,7 +35,7 @@ function CorteInventario({ id }) {
     const navigate = useNavigate();
 
   const inventarioProducto = async () => {
-    const inventarioIdProducto = await DataStore.query(Inventario, id);
+    const inventarioIdProducto = await DataStore.query(INVCERVARTESANAL, id);
     setInventario(inventarioIdProducto);
   };
 
@@ -44,7 +45,7 @@ function CorteInventario({ id }) {
 
   // fetch stockCompras
   const FetchCompras = async () => {
-    const ComprasTotales = await DataStore.query(StockEventInventario, stock =>
+    const ComprasTotales = await DataStore.query(StockEventArtesanal, stock =>
       stock.inventarioID.eq(id)
     );
     setEventCompras(ComprasTotales);
@@ -55,7 +56,7 @@ function CorteInventario({ id }) {
       return;
     }
     FetchCompras();
-    const subscription = DataStore.observe(Inventario).subscribe(FetchCompras);
+    const subscription = DataStore.observe(INVCERVARTESANAL).subscribe(FetchCompras);
     subscription.unsubscribe();
   }, [id]);
 
@@ -65,28 +66,48 @@ function CorteInventario({ id }) {
     inventario?.ventas +
     inventario?.inventarioFinalFisico;
   
-    useEffect(() => {
+  useEffect(() => {
+      
       if (!quantity) {
         return;
       }
-      setCantidad(quantity);
-    }, [quantity]);
+    setCantidad(quantity);
+    
+        if (quantity === 0) {
+          console.log("cuadra")
+        } else if (quantity < 0) {
+         console.log("falta");
+        } else {
+          setTipoTotal("SOBRANTE");
+           console.log("sobra");
+        }
+  }, [quantity]);
   
-    useEffect(() => {
-      if (!quantity) {
-        return;
-      }
-       if (quantity > 0) {
-         setTipoTotal("SOBRANTE");
-       } else if (quantity < 0) {
-         setTipoTotal("FALTANTE");
-       } else if (quantity === 0) {
-         setTipoTotal("CUADRA");
-       }
-    }, [quantity]);
+console.log('esto es cantidad', quantity)
+
+  
+    // useEffect(() => {
+    //   if (!quantity) {
+    //     return;
+    //   }
+
+    //    if (quantity === 0) {
+    //      setTipoTotal("CUADRA");
+    //    } else if (quantity < 0) {
+    //      setTipoTotal("FALTANTE");
+    //    } else {
+    //      setTipoTotal("SOBRANTE");
+    //    }
+    // }, [quantity]);
+
+  
   
   
   let definirMes = inventario?.fechaInicioConteoFisico.substr(0, 7);
+
+
+   
+
 
   useEffect(() => {
     if (!definirMes) {
@@ -104,13 +125,15 @@ function CorteInventario({ id }) {
     setMostrarCompras(!mostrarCompras);
   };
 
+  
 
-    const GenerarCalculo = async () => {
-      try {
+
+  const GenerarCalculo = async () => {
+    try {
         await DataStore.save(
-          Inventario.copyOf(inventario, updated => {
+          INVCERVARTESANAL.copyOf(inventario, updated => {
             updated.total = quantity;
-              updated.tipoTotal = tipoTotal
+            updated.tipoTotal = tipoTotal;
           }));
         
         window.location.reload(false);
@@ -119,13 +142,13 @@ function CorteInventario({ id }) {
         console.log(error);
         message.error("contacta al administrador");
       }
-    };
+    }
   
    const ComprasCero = async () => {
      try {
        await DataStore.save(
-         Inventario.copyOf(inventario, updated => {
-           updated.compras = 0;
+         INVCERVARTESANAL.copyOf(inventario, updated => {
+           updated.compras = parseFloat(0);
          })
        );
 
@@ -209,15 +232,7 @@ function CorteInventario({ id }) {
                 <Col span={3}>{inventario?.ventas}</Col>
                 <Col span={3}>{inventario?.inventarioFinalFisico}</Col>
                 <Col span={4}>{inventario?.total}</Col>
-                <Col span={4}>
-                  {inventario?.total > 0 ? (
-                    <p>Sobrante</p>
-                  ) : inventario?.total < 0 ? (
-                    <p>faltante</p>
-                  ) : (
-                    <p>cuadra</p>
-                  )}
-                </Col>
+              <Col span={4}>{(inventario?.total > 0) ? <p>SOBRANTE</p> :  (inventario?.total <0)  ? <p>faltante</p> : <p>cuadra</p>}</Col>
               </Row>
             </>
             <Divider />
@@ -227,13 +242,8 @@ function CorteInventario({ id }) {
                   Si las compras durante el período son igual a cero da click
                   aquí
                 </Typography.Text>
-                <Button
-                  onClick={ComprasCero}
-                  style={{ background: "green", color: "white" }}
-                >
-                  Guardar Compras en cero
-                </Button>
-                {/* <Button onClick={() => {
+                <Button onClick={ComprasCero} style={{background:'green', color:"white"}}>Guardar Compras en cero</Button>
+              {/* <Button onClick={() => {
                 // let DefineCero = parseFloat()
                 if (inventario?.compras === 0) {
                   console.log(true)
