@@ -211,9 +211,9 @@ function CorteInventario({ id }) {
                 <Col span={4}>{inventario?.total}</Col>
                 <Col span={4}>
                   {inventario?.total > 0 ? (
-                    <p>Sobrante</p>
+                    <p>Sobran {inventario?.total}</p>
                   ) : inventario?.total < 0 ? (
-                    <p>faltante</p>
+                    <p>Faltan {inventario?.total}</p>
                   ) : (
                     <p>cuadra</p>
                   )}

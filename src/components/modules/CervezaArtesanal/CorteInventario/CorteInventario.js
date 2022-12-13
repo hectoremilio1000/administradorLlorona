@@ -232,7 +232,15 @@ console.log('esto es cantidad', quantity)
                 <Col span={3}>{inventario?.ventas}</Col>
                 <Col span={3}>{inventario?.inventarioFinalFisico}</Col>
                 <Col span={4}>{inventario?.total}</Col>
-              <Col span={4}>{(inventario?.total > 0) ? <p>SOBRANTE</p> :  (inventario?.total <0)  ? <p>faltante</p> : <p>cuadra</p>}</Col>
+                <Col span={4}>
+                  {inventario?.total > 0 ? (
+                    <p>Sobran {inventario?.total} </p>
+                  ) : inventario?.total < 0 ? (
+                    <p>Faltan {inventario?.total}</p>
+                  ) : (
+                    <p>Cuadra</p>
+                  )}
+                </Col>
               </Row>
             </>
             <Divider />
@@ -242,8 +250,13 @@ console.log('esto es cantidad', quantity)
                   Si las compras durante el período son igual a cero da click
                   aquí
                 </Typography.Text>
-                <Button onClick={ComprasCero} style={{background:'green', color:"white"}}>Guardar Compras en cero</Button>
-              {/* <Button onClick={() => {
+                <Button
+                  onClick={ComprasCero}
+                  style={{ background: "green", color: "white" }}
+                >
+                  Guardar Compras en cero
+                </Button>
+                {/* <Button onClick={() => {
                 // let DefineCero = parseFloat()
                 if (inventario?.compras === 0) {
                   console.log(true)

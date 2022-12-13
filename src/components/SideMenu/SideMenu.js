@@ -73,18 +73,23 @@ function SideMenu() {
       getItem("Lista Cervezas", "inventario", <GroupOutlined />),
       getItem("Crear Cerveza", "producto", <PlusCircleOutlined />),
     ]),
+    getItem("Cerveza Artes", "sub6", <BranchesOutlined />, [
+      getItem(
+        "Lista Cerveza Art",
+        "inventariocervezaartesanal",
+        <GroupOutlined />
+      ),
+      getItem(
+        "Crear Botella",
+        "cervezaartesanal",
+        <PlusCircleOutlined />
+      ),
+    ]),
     getItem("Inv Botellas", "sub2", <MonitorOutlined />, [
       getItem("Inventario Botellas", "listabotellas", <GroupOutlined />),
       getItem("Crear Botella", "botella", <PlusCircleOutlined />),
     ]),
-    getItem("Inv Cerv Artes", "sub6", <BranchesOutlined />, [
-      getItem("Crear Cerveza Art", "cervezaartesanal", <GroupOutlined />),
-      getItem(
-        "Crear Botella",
-        "inventariocervezaartesanal",
-        <PlusCircleOutlined />
-      ),
-    ]),
+
     {
       key: "signOut",
       label: "Salir",
@@ -129,17 +134,17 @@ function SideMenu() {
   
   const directorMenuItems = [
     getItem("Inicio", "/", <ExportOutlined />),
-    getItem("Inv Cerveza Ind", "sub1", <AppstoreOutlined />, [
+    getItem("Cerveza Indus", "sub1", <AppstoreOutlined />, [
       getItem("Lista Cervezas", "inventario", <GroupOutlined />),
       getItem("Crear Cerveza", "producto", <PlusCircleOutlined />),
     ]),
-    getItem("Inv Cerv Artes", "sub6", <BranchesOutlined />, [
-      getItem("Crear Cerveza Art", "cervezaartesanal", <GroupOutlined />),
+    getItem("Cerveza Artes", "sub6", <BranchesOutlined />, [
       getItem(
         "Lista Cerv Art",
         "inventariocervezaartesanal",
         <PlusCircleOutlined />
       ),
+      getItem("Crear Cerveza Art", "cervezaartesanal", <GroupOutlined />),
     ]),
     getItem("Inv Botellas", "sub2", <MonitorOutlined />, [
       getItem("Inventario Botellas", "listabotellas", <GroupOutlined />),
