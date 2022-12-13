@@ -213,7 +213,7 @@ function CorteInventario({ id }) {
                   {inventario?.total > 0 ? (
                     <p>Sobran {inventario?.total}</p>
                   ) : inventario?.total < 0 ? (
-                    <p>Faltan {inventario?.total}</p>
+                    <p>Faltan {(-1)*inventario?.total  }</p>
                   ) : (
                     <p>cuadra</p>
                   )}
