@@ -38,12 +38,6 @@ type CLIENTES @model @auth(rules: [{allow: public}]) {
   esReserva: String
 }
 
-enum TIPOTOTALBOTELLAS {
-  SOBRANTE
-  FALTANTE
-  CUADRA
-}
-
 type StockInventariosBotellas @model @auth(rules: [{allow: public}]) {
   id: ID!
   quantity: Float
@@ -60,7 +54,7 @@ type InventarioBotellas @model @auth(rules: [{allow: public}]) {
   ventas: Float
   compras: Float
   total: Float
-  tipoTotal: TIPOTOTALBOTELLAS
+  tipoTotal: String
   productosbotellasID: ID! @index(name: "byProductosBotellas")
   StockInventariosBotellas: [StockInventariosBotellas] @hasMany(indexName: "byInventarioBotellas", fields: ["id"])
 }
@@ -98,12 +92,6 @@ type StockEventInventario @model @auth(rules: [{allow: public}]) {
   inventarioID: ID! @index(name: "byInventario")
 }
 
-enum TIPOTOTAL {
-  SOBRANTE
-  FALTANTE
-  CUADRA
-}
-
 type Inventario @model @auth(rules: [{allow: public}]) {
   id: ID!
   inventarioInicialFisico: Float
@@ -113,7 +101,7 @@ type Inventario @model @auth(rules: [{allow: public}]) {
   ventas: Float
   compras: Float
   total: Float
-  tipoTotal: TIPOTOTALBOTELLAS
+  tipoTotal: String
   productsID: ID! @index(name: "byProducts")
   StockEventInventarios: [StockEventInventario] @hasMany(indexName: "byInventario", fields: ["id"])
 }

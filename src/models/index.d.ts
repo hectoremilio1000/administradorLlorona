@@ -2,18 +2,6 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
-export enum Tipototalbotellas {
-  SOBRANTE = "SOBRANTE",
-  FALTANTE = "FALTANTE",
-  CUADRA = "CUADRA"
-}
-
-export enum Tipototal {
-  SOBRANTE = "SOBRANTE",
-  FALTANTE = "FALTANTE",
-  CUADRA = "CUADRA"
-}
-
 type StockEventArtesanalMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -215,7 +203,7 @@ type EagerInventarioBotellas = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly tipoTotal?: string | null;
   readonly productosbotellasID: string;
   readonly StockInventariosBotellas?: (StockInventariosBotellas | null)[] | null;
   readonly createdAt?: string | null;
@@ -231,7 +219,7 @@ type LazyInventarioBotellas = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly tipoTotal?: string | null;
   readonly productosbotellasID: string;
   readonly StockInventariosBotellas: AsyncCollection<StockInventariosBotellas>;
   readonly createdAt?: string | null;
@@ -359,7 +347,7 @@ type EagerInventario = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly tipoTotal?: string | null;
   readonly productsID: string;
   readonly StockEventInventarios?: (StockEventInventario | null)[] | null;
   readonly createdAt?: string | null;
@@ -375,7 +363,7 @@ type LazyInventario = {
   readonly ventas?: number | null;
   readonly compras?: number | null;
   readonly total?: number | null;
-  readonly tipoTotal?: Tipototalbotellas | keyof typeof Tipototalbotellas | null;
+  readonly tipoTotal?: string | null;
   readonly productsID: string;
   readonly StockEventInventarios: AsyncCollection<StockEventInventario>;
   readonly createdAt?: string | null;

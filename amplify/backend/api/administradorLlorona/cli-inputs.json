@@ -6,8 +6,8 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 365,
-      "apiKeyExpirationDate": "2023-12-13T14:01:56.439Z",
-      "keyDescription": "invArtesAPI"
+      "apiKeyExpirationDate": "2023-12-14T01:42:45.904Z",
+      "keyDescription": "finalizadoCervezaAPI"
     },
     "additionalAuthTypes": [
       {
