@@ -34,7 +34,7 @@ const [time, setTime] = useState("");
       try {
          await DataStore.save(
            new CLIENTES({
-             nombre: values.nombres,
+             nombre: values.nombre,
              cumple: cumple,
              delegacion: values.delegacion,
              fechaLlegada: today,
