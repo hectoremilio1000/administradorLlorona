@@ -6,10 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Empresa } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Empresa } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function EmpresaCreateForm(props) {
   const {
@@ -17,19 +17,18 @@ export default function EmpresaCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    nombre: undefined,
-    direccionCompleta: undefined,
-    visitado: undefined,
-    yaContacto: undefined,
-    seCerroEvento: undefined,
-    fechaVisita: undefined,
+    nombre: "",
+    direccionCompleta: "",
+    visitado: "",
+    yaContacto: "",
+    seCerroEvento: "",
+    fechaVisita: "",
   };
   const [nombre, setNombre] = React.useState(initialValues.nombre);
   const [direccionCompleta, setDireccionCompleta] = React.useState(
@@ -61,7 +60,14 @@ export default function EmpresaCreateForm(props) {
     seCerroEvento: [],
     fechaVisita: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -109,6 +115,11 @@ export default function EmpresaCreateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(new Empresa(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
@@ -122,13 +133,14 @@ export default function EmpresaCreateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "EmpresaCreateForm")}
+      {...rest}
     >
       <TextField
         label="Nombre"
         isRequired={false}
         isReadOnly={false}
+        value={nombre}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -157,6 +169,7 @@ export default function EmpresaCreateForm(props) {
         label="Direccion completa"
         isRequired={false}
         isReadOnly={false}
+        value={direccionCompleta}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -187,6 +200,7 @@ export default function EmpresaCreateForm(props) {
         label="Visitado"
         isRequired={false}
         isReadOnly={false}
+        value={visitado}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -215,6 +229,7 @@ export default function EmpresaCreateForm(props) {
         label="Ya contacto"
         isRequired={false}
         isReadOnly={false}
+        value={yaContacto}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -243,6 +258,7 @@ export default function EmpresaCreateForm(props) {
         label="Se cerro evento"
         isRequired={false}
         isReadOnly={false}
+        value={seCerroEvento}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -271,6 +287,7 @@ export default function EmpresaCreateForm(props) {
         label="Fecha visita"
         isRequired={false}
         isReadOnly={false}
+        value={fechaVisita}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -302,21 +319,16 @@ export default function EmpresaCreateForm(props) {
         <Button
           children="Clear"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
           {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
-          <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
           <Button
             children="Submit"
             type="submit"

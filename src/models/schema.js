@@ -348,7 +348,7 @@ export const schema = {
                 "numeroPersonas": {
                     "name": "numeroPersonas",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Float",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -361,6 +361,34 @@ export const schema = {
                 },
                 "esReserva": {
                     "name": "esReserva",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "whatsapp": {
+                    "name": "whatsapp",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mesero": {
+                    "name": "mesero",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "servici": {
+                    "name": "servici",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -1185,6 +1213,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.3.2",
-    "version": "7700829ca1c2bf94694bf2bf46980960"
+    "codegenVersion": "3.3.4",
+    "version": "bd06de10bbf97d41c08c029b47a1072a"
 };

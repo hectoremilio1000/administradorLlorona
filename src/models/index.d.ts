@@ -142,9 +142,13 @@ type EagerCLIENTES = {
   readonly fechaLlegada?: string | null;
   readonly HoraLlegada?: string | null;
   readonly mesaAsignada?: string | null;
-  readonly numeroPersonas?: string | null;
+  readonly numeroPersonas?: number | null;
   readonly evento?: string | null;
   readonly esReserva?: string | null;
+  readonly whatsapp?: number | null;
+  readonly email?: string | null;
+  readonly mesero?: string | null;
+  readonly servici?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -157,9 +161,13 @@ type LazyCLIENTES = {
   readonly fechaLlegada?: string | null;
   readonly HoraLlegada?: string | null;
   readonly mesaAsignada?: string | null;
-  readonly numeroPersonas?: string | null;
+  readonly numeroPersonas?: number | null;
   readonly evento?: string | null;
   readonly esReserva?: string | null;
+  readonly whatsapp?: number | null;
+  readonly email?: string | null;
+  readonly mesero?: string | null;
+  readonly servici?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

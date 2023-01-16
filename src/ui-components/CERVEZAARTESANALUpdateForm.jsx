@@ -6,31 +6,32 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { CERVEZAARTESANAL } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { CERVEZAARTESANAL } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function CERVEZAARTESANALUpdateForm(props) {
   const {
-    id,
+    id: idProp,
     cERVEZAARTESANAL,
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    nam: undefined,
+    nam: "",
   };
   const [nam, setNam] = React.useState(initialValues.nam);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...cERVEZAARTESANALRecord };
+    const cleanValues = cERVEZAARTESANALRecord
+      ? { ...initialValues, ...cERVEZAARTESANALRecord }
+      : initialValues;
     setNam(cleanValues.nam);
     setErrors({});
   };
@@ -38,18 +39,25 @@ export default function CERVEZAARTESANALUpdateForm(props) {
     React.useState(cERVEZAARTESANAL);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id
-        ? await DataStore.query(CERVEZAARTESANAL, id)
+      const record = idProp
+        ? await DataStore.query(CERVEZAARTESANAL, idProp)
         : cERVEZAARTESANAL;
       setCERVEZAARTESANALRecord(record);
     };
     queryData();
-  }, [id, cERVEZAARTESANAL]);
+  }, [idProp, cERVEZAARTESANAL]);
   React.useEffect(resetStateValues, [cERVEZAARTESANALRecord]);
   const validations = {
     nam: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -92,6 +100,11 @@ export default function CERVEZAARTESANALUpdateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(
             CERVEZAARTESANAL.copyOf(cERVEZAARTESANALRecord, (updated) => {
               Object.assign(updated, modelFields);
@@ -106,14 +119,14 @@ export default function CERVEZAARTESANALUpdateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "CERVEZAARTESANALUpdateForm")}
+      {...rest}
     >
       <TextField
         label="Nam"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={nam}
+        value={nam}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -140,7 +153,11 @@ export default function CERVEZAARTESANALUpdateForm(props) {
         <Button
           children="Reset"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || cERVEZAARTESANAL)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -148,18 +165,13 @@ export default function CERVEZAARTESANALUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || cERVEZAARTESANAL) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

@@ -6,31 +6,32 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { ProductosBotellas } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { ProductosBotellas } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function ProductosBotellasUpdateForm(props) {
   const {
-    id,
+    id: idProp,
     productosBotellas,
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    name: undefined,
+    name: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...productosBotellasRecord };
+    const cleanValues = productosBotellasRecord
+      ? { ...initialValues, ...productosBotellasRecord }
+      : initialValues;
     setName(cleanValues.name);
     setErrors({});
   };
@@ -38,18 +39,25 @@ export default function ProductosBotellasUpdateForm(props) {
     React.useState(productosBotellas);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id
-        ? await DataStore.query(ProductosBotellas, id)
+      const record = idProp
+        ? await DataStore.query(ProductosBotellas, idProp)
         : productosBotellas;
       setProductosBotellasRecord(record);
     };
     queryData();
-  }, [id, productosBotellas]);
+  }, [idProp, productosBotellas]);
   React.useEffect(resetStateValues, [productosBotellasRecord]);
   const validations = {
     name: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -92,6 +100,11 @@ export default function ProductosBotellasUpdateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(
             ProductosBotellas.copyOf(productosBotellasRecord, (updated) => {
               Object.assign(updated, modelFields);
@@ -106,14 +119,14 @@ export default function ProductosBotellasUpdateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "ProductosBotellasUpdateForm")}
+      {...rest}
     >
       <TextField
         label="Name"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={name}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -140,7 +153,11 @@ export default function ProductosBotellasUpdateForm(props) {
         <Button
           children="Reset"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || productosBotellas)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -148,18 +165,13 @@ export default function ProductosBotellasUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || productosBotellas) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

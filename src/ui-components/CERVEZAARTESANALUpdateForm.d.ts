@@ -5,9 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { CERVEZAARTESANAL } from "../models";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { CERVEZAARTESANAL } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -19,10 +19,10 @@ export declare type CERVEZAARTESANALUpdateFormInputValues = {
 export declare type CERVEZAARTESANALUpdateFormValidationValues = {
     nam?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CERVEZAARTESANALUpdateFormOverridesProps = {
-    CERVEZAARTESANALUpdateFormGrid?: FormProps<GridProps>;
-    nam?: FormProps<TextFieldProps>;
+    CERVEZAARTESANALUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    nam?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CERVEZAARTESANALUpdateFormProps = React.PropsWithChildren<{
     overrides?: CERVEZAARTESANALUpdateFormOverridesProps | undefined | null;
@@ -32,7 +32,6 @@ export declare type CERVEZAARTESANALUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: CERVEZAARTESANALUpdateFormInputValues) => CERVEZAARTESANALUpdateFormInputValues;
     onSuccess?: (fields: CERVEZAARTESANALUpdateFormInputValues) => void;
     onError?: (fields: CERVEZAARTESANALUpdateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: CERVEZAARTESANALUpdateFormInputValues) => CERVEZAARTESANALUpdateFormInputValues;
     onValidate?: CERVEZAARTESANALUpdateFormValidationValues;
 } & React.CSSProperties>;

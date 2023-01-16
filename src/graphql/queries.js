@@ -247,6 +247,10 @@ export const getCLIENTES = /* GraphQL */ `
       numeroPersonas
       evento
       esReserva
+      whatsapp
+      email
+      mesero
+      servici
       createdAt
       updatedAt
       _version
@@ -273,6 +277,10 @@ export const listCLIENTES = /* GraphQL */ `
         numeroPersonas
         evento
         esReserva
+        whatsapp
+        email
+        mesero
+        servici
         createdAt
         updatedAt
         _version
@@ -308,6 +316,10 @@ export const syncCLIENTES = /* GraphQL */ `
         numeroPersonas
         evento
         esReserva
+        whatsapp
+        email
+        mesero
+        servici
         createdAt
         updatedAt
         _version

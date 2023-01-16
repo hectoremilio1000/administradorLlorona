@@ -5,9 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Hotel } from "../models";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { Hotel } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -29,15 +29,15 @@ export declare type HotelUpdateFormValidationValues = {
     mandoClientes?: ValidationFunction<string>;
     fechaVisita?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HotelUpdateFormOverridesProps = {
-    HotelUpdateFormGrid?: FormProps<GridProps>;
-    nombre?: FormProps<TextFieldProps>;
-    direccionCompleta?: FormProps<TextFieldProps>;
-    visitado?: FormProps<TextFieldProps>;
-    visitaRecepcionista?: FormProps<TextFieldProps>;
-    mandoClientes?: FormProps<TextFieldProps>;
-    fechaVisita?: FormProps<TextFieldProps>;
+    HotelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    nombre?: PrimitiveOverrideProps<TextFieldProps>;
+    direccionCompleta?: PrimitiveOverrideProps<TextFieldProps>;
+    visitado?: PrimitiveOverrideProps<TextFieldProps>;
+    visitaRecepcionista?: PrimitiveOverrideProps<TextFieldProps>;
+    mandoClientes?: PrimitiveOverrideProps<TextFieldProps>;
+    fechaVisita?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type HotelUpdateFormProps = React.PropsWithChildren<{
     overrides?: HotelUpdateFormOverridesProps | undefined | null;
@@ -47,7 +47,6 @@ export declare type HotelUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: HotelUpdateFormInputValues) => HotelUpdateFormInputValues;
     onSuccess?: (fields: HotelUpdateFormInputValues) => void;
     onError?: (fields: HotelUpdateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: HotelUpdateFormInputValues) => HotelUpdateFormInputValues;
     onValidate?: HotelUpdateFormValidationValues;
 } & React.CSSProperties>;

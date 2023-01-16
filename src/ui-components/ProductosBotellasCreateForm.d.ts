@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -18,10 +18,10 @@ export declare type ProductosBotellasCreateFormInputValues = {
 export declare type ProductosBotellasCreateFormValidationValues = {
     name?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProductosBotellasCreateFormOverridesProps = {
-    ProductosBotellasCreateFormGrid?: FormProps<GridProps>;
-    name?: FormProps<TextFieldProps>;
+    ProductosBotellasCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ProductosBotellasCreateFormProps = React.PropsWithChildren<{
     overrides?: ProductosBotellasCreateFormOverridesProps | undefined | null;
@@ -30,7 +30,6 @@ export declare type ProductosBotellasCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: ProductosBotellasCreateFormInputValues) => ProductosBotellasCreateFormInputValues;
     onSuccess?: (fields: ProductosBotellasCreateFormInputValues) => void;
     onError?: (fields: ProductosBotellasCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: ProductosBotellasCreateFormInputValues) => ProductosBotellasCreateFormInputValues;
     onValidate?: ProductosBotellasCreateFormValidationValues;
 } & React.CSSProperties>;

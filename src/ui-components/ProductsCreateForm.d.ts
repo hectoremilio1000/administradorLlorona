@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -18,10 +18,10 @@ export declare type ProductsCreateFormInputValues = {
 export declare type ProductsCreateFormValidationValues = {
     name?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProductsCreateFormOverridesProps = {
-    ProductsCreateFormGrid?: FormProps<GridProps>;
-    name?: FormProps<TextFieldProps>;
+    ProductsCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ProductsCreateFormProps = React.PropsWithChildren<{
     overrides?: ProductsCreateFormOverridesProps | undefined | null;
@@ -30,7 +30,6 @@ export declare type ProductsCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: ProductsCreateFormInputValues) => ProductsCreateFormInputValues;
     onSuccess?: (fields: ProductsCreateFormInputValues) => void;
     onError?: (fields: ProductsCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: ProductsCreateFormInputValues) => ProductsCreateFormInputValues;
     onValidate?: ProductsCreateFormValidationValues;
 } & React.CSSProperties>;

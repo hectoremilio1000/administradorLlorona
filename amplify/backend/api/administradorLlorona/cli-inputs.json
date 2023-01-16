@@ -6,8 +6,8 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 365,
-      "apiKeyExpirationDate": "2023-12-14T01:42:45.904Z",
-      "keyDescription": "finalizadoCervezaAPI"
+      "apiKeyExpirationDate": "2024-01-16T17:40:34.179Z",
+      "keyDescription": "numberKEY"
     },
     "additionalAuthTypes": [
       {

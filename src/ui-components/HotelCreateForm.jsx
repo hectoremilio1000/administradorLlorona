@@ -6,10 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Hotel } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Hotel } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function HotelCreateForm(props) {
   const {
@@ -17,19 +17,18 @@ export default function HotelCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    nombre: undefined,
-    direccionCompleta: undefined,
-    visitado: undefined,
-    visitaRecepcionista: undefined,
-    mandoClientes: undefined,
-    fechaVisita: undefined,
+    nombre: "",
+    direccionCompleta: "",
+    visitado: "",
+    visitaRecepcionista: "",
+    mandoClientes: "",
+    fechaVisita: "",
   };
   const [nombre, setNombre] = React.useState(initialValues.nombre);
   const [direccionCompleta, setDireccionCompleta] = React.useState(
@@ -63,7 +62,14 @@ export default function HotelCreateForm(props) {
     mandoClientes: [],
     fechaVisita: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -111,6 +117,11 @@ export default function HotelCreateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(new Hotel(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
@@ -124,13 +135,14 @@ export default function HotelCreateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "HotelCreateForm")}
+      {...rest}
     >
       <TextField
         label="Nombre"
         isRequired={false}
         isReadOnly={false}
+        value={nombre}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -159,6 +171,7 @@ export default function HotelCreateForm(props) {
         label="Direccion completa"
         isRequired={false}
         isReadOnly={false}
+        value={direccionCompleta}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -189,6 +202,7 @@ export default function HotelCreateForm(props) {
         label="Visitado"
         isRequired={false}
         isReadOnly={false}
+        value={visitado}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -217,6 +231,7 @@ export default function HotelCreateForm(props) {
         label="Visita recepcionista"
         isRequired={false}
         isReadOnly={false}
+        value={visitaRecepcionista}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -247,6 +262,7 @@ export default function HotelCreateForm(props) {
         label="Mando clientes"
         isRequired={false}
         isReadOnly={false}
+        value={mandoClientes}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -275,6 +291,7 @@ export default function HotelCreateForm(props) {
         label="Fecha visita"
         isRequired={false}
         isReadOnly={false}
+        value={fechaVisita}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -306,21 +323,16 @@ export default function HotelCreateForm(props) {
         <Button
           children="Clear"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
           {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
-          <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
           <Button
             children="Submit"
             type="submit"

@@ -203,6 +203,10 @@ export const onCreateCLIENTES = /* GraphQL */ `
       numeroPersonas
       evento
       esReserva
+      whatsapp
+      email
+      mesero
+      servici
       createdAt
       updatedAt
       _version
@@ -224,6 +228,10 @@ export const onUpdateCLIENTES = /* GraphQL */ `
       numeroPersonas
       evento
       esReserva
+      whatsapp
+      email
+      mesero
+      servici
       createdAt
       updatedAt
       _version
@@ -245,6 +253,10 @@ export const onDeleteCLIENTES = /* GraphQL */ `
       numeroPersonas
       evento
       esReserva
+      whatsapp
+      email
+      mesero
+      servici
       createdAt
       updatedAt
       _version

@@ -33,9 +33,13 @@ type CLIENTES @model @auth(rules: [{allow: public}]) {
   fechaLlegada: String
   HoraLlegada: String
   mesaAsignada: String
-  numeroPersonas: String
+  numeroPersonas: Float
   evento: String
   esReserva: String
+  whatsapp: Float
+  email: String
+  mesero: String
+  servici: String
 }
 
 type StockInventariosBotellas @model @auth(rules: [{allow: public}]) {

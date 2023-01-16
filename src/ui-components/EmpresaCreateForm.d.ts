@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -28,15 +28,15 @@ export declare type EmpresaCreateFormValidationValues = {
     seCerroEvento?: ValidationFunction<string>;
     fechaVisita?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EmpresaCreateFormOverridesProps = {
-    EmpresaCreateFormGrid?: FormProps<GridProps>;
-    nombre?: FormProps<TextFieldProps>;
-    direccionCompleta?: FormProps<TextFieldProps>;
-    visitado?: FormProps<TextFieldProps>;
-    yaContacto?: FormProps<TextFieldProps>;
-    seCerroEvento?: FormProps<TextFieldProps>;
-    fechaVisita?: FormProps<TextFieldProps>;
+    EmpresaCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    nombre?: PrimitiveOverrideProps<TextFieldProps>;
+    direccionCompleta?: PrimitiveOverrideProps<TextFieldProps>;
+    visitado?: PrimitiveOverrideProps<TextFieldProps>;
+    yaContacto?: PrimitiveOverrideProps<TextFieldProps>;
+    seCerroEvento?: PrimitiveOverrideProps<TextFieldProps>;
+    fechaVisita?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EmpresaCreateFormProps = React.PropsWithChildren<{
     overrides?: EmpresaCreateFormOverridesProps | undefined | null;
@@ -45,7 +45,6 @@ export declare type EmpresaCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: EmpresaCreateFormInputValues) => EmpresaCreateFormInputValues;
     onSuccess?: (fields: EmpresaCreateFormInputValues) => void;
     onError?: (fields: EmpresaCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: EmpresaCreateFormInputValues) => EmpresaCreateFormInputValues;
     onValidate?: EmpresaCreateFormValidationValues;
 } & React.CSSProperties>;

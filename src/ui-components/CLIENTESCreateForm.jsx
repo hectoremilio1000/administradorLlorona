@@ -6,10 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { CLIENTES } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { CLIENTES } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function CLIENTESCreateForm(props) {
   const {
@@ -17,22 +17,25 @@ export default function CLIENTESCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    nombre: undefined,
-    cumple: undefined,
-    delegacion: undefined,
-    fechaLlegada: undefined,
-    HoraLlegada: undefined,
-    mesaAsignada: undefined,
-    numeroPersonas: undefined,
-    evento: undefined,
-    esReserva: undefined,
+    nombre: "",
+    cumple: "",
+    delegacion: "",
+    fechaLlegada: "",
+    HoraLlegada: "",
+    mesaAsignada: "",
+    numeroPersonas: "",
+    evento: "",
+    esReserva: "",
+    whatsapp: "",
+    email: "",
+    mesero: "",
+    servici: "",
   };
   const [nombre, setNombre] = React.useState(initialValues.nombre);
   const [cumple, setCumple] = React.useState(initialValues.cumple);
@@ -51,6 +54,10 @@ export default function CLIENTESCreateForm(props) {
   );
   const [evento, setEvento] = React.useState(initialValues.evento);
   const [esReserva, setEsReserva] = React.useState(initialValues.esReserva);
+  const [whatsapp, setWhatsapp] = React.useState(initialValues.whatsapp);
+  const [email, setEmail] = React.useState(initialValues.email);
+  const [mesero, setMesero] = React.useState(initialValues.mesero);
+  const [servici, setServici] = React.useState(initialValues.servici);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setNombre(initialValues.nombre);
@@ -62,6 +69,10 @@ export default function CLIENTESCreateForm(props) {
     setNumeroPersonas(initialValues.numeroPersonas);
     setEvento(initialValues.evento);
     setEsReserva(initialValues.esReserva);
+    setWhatsapp(initialValues.whatsapp);
+    setEmail(initialValues.email);
+    setMesero(initialValues.mesero);
+    setServici(initialValues.servici);
     setErrors({});
   };
   const validations = {
@@ -74,8 +85,19 @@ export default function CLIENTESCreateForm(props) {
     numeroPersonas: [],
     evento: [],
     esReserva: [],
+    whatsapp: [],
+    email: [],
+    mesero: [],
+    servici: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -102,6 +124,10 @@ export default function CLIENTESCreateForm(props) {
           numeroPersonas,
           evento,
           esReserva,
+          whatsapp,
+          email,
+          mesero,
+          servici,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -126,6 +152,11 @@ export default function CLIENTESCreateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(new CLIENTES(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
@@ -139,13 +170,14 @@ export default function CLIENTESCreateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "CLIENTESCreateForm")}
+      {...rest}
     >
       <TextField
         label="Nombre"
         isRequired={false}
         isReadOnly={false}
+        value={nombre}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -159,6 +191,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.nombre ?? value;
@@ -177,6 +213,7 @@ export default function CLIENTESCreateForm(props) {
         label="Cumple"
         isRequired={false}
         isReadOnly={false}
+        value={cumple}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -190,6 +227,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.cumple ?? value;
@@ -208,6 +249,7 @@ export default function CLIENTESCreateForm(props) {
         label="Delegacion"
         isRequired={false}
         isReadOnly={false}
+        value={delegacion}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -221,6 +263,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.delegacion ?? value;
@@ -239,6 +285,7 @@ export default function CLIENTESCreateForm(props) {
         label="Fecha llegada"
         isRequired={false}
         isReadOnly={false}
+        value={fechaLlegada}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -252,6 +299,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.fechaLlegada ?? value;
@@ -270,6 +321,7 @@ export default function CLIENTESCreateForm(props) {
         label="Hora llegada"
         isRequired={false}
         isReadOnly={false}
+        value={HoraLlegada}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -283,6 +335,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.HoraLlegada ?? value;
@@ -301,6 +357,7 @@ export default function CLIENTESCreateForm(props) {
         label="Mesa asignada"
         isRequired={false}
         isReadOnly={false}
+        value={mesaAsignada}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -314,6 +371,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.mesaAsignada ?? value;
@@ -332,8 +393,13 @@ export default function CLIENTESCreateForm(props) {
         label="Numero personas"
         isRequired={false}
         isReadOnly={false}
+        type="number"
+        step="any"
+        value={numeroPersonas}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
               nombre,
@@ -345,6 +411,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas: value,
               evento,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.numeroPersonas ?? value;
@@ -363,6 +433,7 @@ export default function CLIENTESCreateForm(props) {
         label="Evento"
         isRequired={false}
         isReadOnly={false}
+        value={evento}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -376,6 +447,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento: value,
               esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.evento ?? value;
@@ -394,6 +469,7 @@ export default function CLIENTESCreateForm(props) {
         label="Es reserva"
         isRequired={false}
         isReadOnly={false}
+        value={esReserva}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -407,6 +483,10 @@ export default function CLIENTESCreateForm(props) {
               numeroPersonas,
               evento,
               esReserva: value,
+              whatsapp,
+              email,
+              mesero,
+              servici,
             };
             const result = onChange(modelFields);
             value = result?.esReserva ?? value;
@@ -421,6 +501,154 @@ export default function CLIENTESCreateForm(props) {
         hasError={errors.esReserva?.hasError}
         {...getOverrideProps(overrides, "esReserva")}
       ></TextField>
+      <TextField
+        label="Whatsapp"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={whatsapp}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              nombre,
+              cumple,
+              delegacion,
+              fechaLlegada,
+              HoraLlegada,
+              mesaAsignada,
+              numeroPersonas,
+              evento,
+              esReserva,
+              whatsapp: value,
+              email,
+              mesero,
+              servici,
+            };
+            const result = onChange(modelFields);
+            value = result?.whatsapp ?? value;
+          }
+          if (errors.whatsapp?.hasError) {
+            runValidationTasks("whatsapp", value);
+          }
+          setWhatsapp(value);
+        }}
+        onBlur={() => runValidationTasks("whatsapp", whatsapp)}
+        errorMessage={errors.whatsapp?.errorMessage}
+        hasError={errors.whatsapp?.hasError}
+        {...getOverrideProps(overrides, "whatsapp")}
+      ></TextField>
+      <TextField
+        label="Email"
+        isRequired={false}
+        isReadOnly={false}
+        value={email}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              nombre,
+              cumple,
+              delegacion,
+              fechaLlegada,
+              HoraLlegada,
+              mesaAsignada,
+              numeroPersonas,
+              evento,
+              esReserva,
+              whatsapp,
+              email: value,
+              mesero,
+              servici,
+            };
+            const result = onChange(modelFields);
+            value = result?.email ?? value;
+          }
+          if (errors.email?.hasError) {
+            runValidationTasks("email", value);
+          }
+          setEmail(value);
+        }}
+        onBlur={() => runValidationTasks("email", email)}
+        errorMessage={errors.email?.errorMessage}
+        hasError={errors.email?.hasError}
+        {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
+        label="Mesero"
+        isRequired={false}
+        isReadOnly={false}
+        value={mesero}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              nombre,
+              cumple,
+              delegacion,
+              fechaLlegada,
+              HoraLlegada,
+              mesaAsignada,
+              numeroPersonas,
+              evento,
+              esReserva,
+              whatsapp,
+              email,
+              mesero: value,
+              servici,
+            };
+            const result = onChange(modelFields);
+            value = result?.mesero ?? value;
+          }
+          if (errors.mesero?.hasError) {
+            runValidationTasks("mesero", value);
+          }
+          setMesero(value);
+        }}
+        onBlur={() => runValidationTasks("mesero", mesero)}
+        errorMessage={errors.mesero?.errorMessage}
+        hasError={errors.mesero?.hasError}
+        {...getOverrideProps(overrides, "mesero")}
+      ></TextField>
+      <TextField
+        label="Servici"
+        isRequired={false}
+        isReadOnly={false}
+        value={servici}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              nombre,
+              cumple,
+              delegacion,
+              fechaLlegada,
+              HoraLlegada,
+              mesaAsignada,
+              numeroPersonas,
+              evento,
+              esReserva,
+              whatsapp,
+              email,
+              mesero,
+              servici: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.servici ?? value;
+          }
+          if (errors.servici?.hasError) {
+            runValidationTasks("servici", value);
+          }
+          setServici(value);
+        }}
+        onBlur={() => runValidationTasks("servici", servici)}
+        errorMessage={errors.servici?.errorMessage}
+        hasError={errors.servici?.hasError}
+        {...getOverrideProps(overrides, "servici")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
@@ -428,21 +656,16 @@ export default function CLIENTESCreateForm(props) {
         <Button
           children="Clear"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
           {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
-          <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
           <Button
             children="Submit"
             type="submit"

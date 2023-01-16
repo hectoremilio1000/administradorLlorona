@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -18,10 +18,10 @@ export declare type CERVEZAARTESANALCreateFormInputValues = {
 export declare type CERVEZAARTESANALCreateFormValidationValues = {
     nam?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CERVEZAARTESANALCreateFormOverridesProps = {
-    CERVEZAARTESANALCreateFormGrid?: FormProps<GridProps>;
-    nam?: FormProps<TextFieldProps>;
+    CERVEZAARTESANALCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    nam?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CERVEZAARTESANALCreateFormProps = React.PropsWithChildren<{
     overrides?: CERVEZAARTESANALCreateFormOverridesProps | undefined | null;
@@ -30,7 +30,6 @@ export declare type CERVEZAARTESANALCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: CERVEZAARTESANALCreateFormInputValues) => CERVEZAARTESANALCreateFormInputValues;
     onSuccess?: (fields: CERVEZAARTESANALCreateFormInputValues) => void;
     onError?: (fields: CERVEZAARTESANALCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: CERVEZAARTESANALCreateFormInputValues) => CERVEZAARTESANALCreateFormInputValues;
     onValidate?: CERVEZAARTESANALCreateFormValidationValues;
 } & React.CSSProperties>;
