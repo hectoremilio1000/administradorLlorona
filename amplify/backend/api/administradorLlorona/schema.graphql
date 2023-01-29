@@ -108,6 +108,8 @@ type Inventario @model @auth(rules: [{allow: public}]) {
   tipoTotal: String
   productsID: ID! @index(name: "byProducts")
   StockEventInventarios: [StockEventInventario] @hasMany(indexName: "byInventario", fields: ["id"])
+  comentarioEncargado: String
+  comentarioGerente: String
 }
 
 type Products @model @auth(rules: [{allow: public}]) {

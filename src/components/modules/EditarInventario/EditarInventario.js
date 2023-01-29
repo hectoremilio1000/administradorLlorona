@@ -34,6 +34,7 @@ function EditarInventario() {
 
   const [mostrarCrear, setMostrarCrear] = useState(false);
 
+
   const navigate = useNavigate();
 
   let name = producto?.name;
@@ -67,8 +68,6 @@ function EditarInventario() {
     fetchInventary();
   }, [id]);
 
-  console.log(inventarioProducto);
-
   const EliminarProducto = async () => {
     await DataStore.delete(Products, id);
     navigate(-1);
@@ -98,6 +97,8 @@ function EditarInventario() {
   const mostrarCrearInventario = () => {
     setMostrarCrear(!mostrarCrear);
   };
+
+ 
 
   return (
     <Card>
@@ -142,7 +143,7 @@ function EditarInventario() {
         {inventarioProducto ? (
           inventarioProducto.map(inventario => {
             const { id } = inventario;
-         
+
             return (
               <Card key={id}>
                 <CorteInventario id={id} />
@@ -153,6 +154,7 @@ function EditarInventario() {
           <></>
         )}
       </Card>
+      
     </Card>
   );
 }

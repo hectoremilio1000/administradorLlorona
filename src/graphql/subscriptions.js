@@ -632,6 +632,8 @@ export const onCreateInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version
@@ -659,6 +661,8 @@ export const onUpdateInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version
@@ -686,6 +690,8 @@ export const onDeleteInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version

@@ -6,8 +6,8 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 365,
-      "apiKeyExpirationDate": "2024-01-16T17:40:34.179Z",
-      "keyDescription": "numberKEY"
+      "apiKeyExpirationDate": "2024-01-29T03:50:34.313Z",
+      "keyDescription": "comentsAPI"
     },
     "additionalAuthTypes": [
       {

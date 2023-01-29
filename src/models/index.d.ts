@@ -358,6 +358,8 @@ type EagerInventario = {
   readonly tipoTotal?: string | null;
   readonly productsID: string;
   readonly StockEventInventarios?: (StockEventInventario | null)[] | null;
+  readonly comentarioEncargado?: string | null;
+  readonly comentarioGerente?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -374,6 +376,8 @@ type LazyInventario = {
   readonly tipoTotal?: string | null;
   readonly productsID: string;
   readonly StockEventInventarios: AsyncCollection<StockEventInventario>;
+  readonly comentarioEncargado?: string | null;
+  readonly comentarioGerente?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

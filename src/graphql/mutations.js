@@ -681,6 +681,8 @@ export const createInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version
@@ -709,6 +711,8 @@ export const updateInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version
@@ -737,6 +741,8 @@ export const deleteInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version

@@ -804,6 +804,8 @@ export const getInventario = /* GraphQL */ `
         nextToken
         startedAt
       }
+      comentarioEncargado
+      comentarioGerente
       createdAt
       updatedAt
       _version
@@ -830,6 +832,8 @@ export const listInventarios = /* GraphQL */ `
         total
         tipoTotal
         productsID
+        comentarioEncargado
+        comentarioGerente
         createdAt
         updatedAt
         _version
@@ -865,6 +869,8 @@ export const syncInventarios = /* GraphQL */ `
         total
         tipoTotal
         productsID
+        comentarioEncargado
+        comentarioGerente
         createdAt
         updatedAt
         _version

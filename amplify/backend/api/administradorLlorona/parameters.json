@@ -2,5 +2,5 @@
   "AppSyncApiName": "administradorLlorona",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-01-16T17:40:37.957Z"
+  "AuthModeLastUpdated": "2023-01-29T03:50:38.133Z"
 }

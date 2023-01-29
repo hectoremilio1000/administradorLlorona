@@ -11,9 +11,9 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-01-16T17:40:34.179Z",
+              "apiKeyExpirationDate": "2024-01-29T03:50:34.313Z",
               "apiKeyExpirationDays": 365,
-              "description": "numberKEY"
+              "description": "comentsAPI"
             },
             "authenticationType": "API_KEY"
           }

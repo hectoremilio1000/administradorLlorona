@@ -8,11 +8,13 @@ import {
   message,
   Row,
   Typography,
+  Input,
 } from "antd";
 import { DataStore } from "aws-amplify";
 import { Inventario, StockEventInventario } from "../../models";
 import { useNavigate } from "react-router-dom";
 import MostrarCompras from '../modules/MostrarCompras/MostrarCompras';
+import MostrarComprasTabla from '../modules/MostrarComprasTabla/MostrarComprasTabla';
 
 
 function CorteInventario({ id }) {
@@ -22,7 +24,7 @@ function CorteInventario({ id }) {
   const [tipoTotal, setTipoTotal] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [invMes, setInvMes] = useState("");
-  const [comprasCeroFinal, setComprasCeroFinal] = useState("")
+  const [comprasCeroFinal, setComprasCeroFinal] = useState("");
 
   const [showEditar, setShowEditar] = useState(false);
 
@@ -31,7 +33,15 @@ function CorteInventario({ id }) {
   // eventsCompras
   const [eventCompras, setEventCompras] = useState([]);
 
-    const navigate = useNavigate();
+  //Inputs comentarios
+  const [inputEncargado, setInputEncargado] = useState("");
+
+
+
+  const [inputGerente, setInputGerente] = useState("");
+  
+
+  const navigate = useNavigate();
 
   const inventarioProducto = async () => {
     const inventarioIdProducto = await DataStore.query(Inventario, id);
@@ -64,28 +74,27 @@ function CorteInventario({ id }) {
     inventario?.compras +
     inventario?.ventas +
     inventario?.inventarioFinalFisico;
-  
-    useEffect(() => {
-      if (!quantity) {
-        return;
-      }
-      setCantidad(quantity);
-    }, [quantity]);
-  
-    useEffect(() => {
-      if (!quantity) {
-        return;
-      }
-       if (quantity > 0) {
-         setTipoTotal("SOBRANTE");
-       } else if (quantity < 0) {
-         setTipoTotal("FALTANTE");
-       } else if (quantity === 0) {
-         setTipoTotal("CUADRA");
-       }
-    }, [quantity]);
-  
-  
+
+  useEffect(() => {
+    if (!quantity) {
+      return;
+    }
+    setCantidad(quantity);
+  }, [quantity]);
+
+  useEffect(() => {
+    if (!quantity) {
+      return;
+    }
+    if (quantity > 0) {
+      setTipoTotal("SOBRANTE");
+    } else if (quantity < 0) {
+      setTipoTotal("FALTANTE");
+    } else if (quantity === 0) {
+      setTipoTotal("CUADRA");
+    }
+  }, [quantity]);
+
   let definirMes = inventario?.fechaInicioConteoFisico.substr(0, 7);
 
   useEffect(() => {
@@ -99,48 +108,75 @@ function CorteInventario({ id }) {
     setShowEditar(!showEditar);
   };
 
-
   const ShowCompras = () => {
     setMostrarCompras(!mostrarCompras);
   };
 
+  const GenerarCalculo = async () => {
+    try {
+      await DataStore.save(
+        Inventario.copyOf(inventario, updated => {
+          updated.total = quantity;
+          updated.tipoTotal = tipoTotal;
+        })
+      );
 
-    const GenerarCalculo = async () => {
-      try {
-        await DataStore.save(
-          Inventario.copyOf(inventario, updated => {
-            updated.total = quantity;
-              updated.tipoTotal = tipoTotal
-          }));
-        
-        window.location.reload(false);
-        message.success("inventario final generado correctamente");
+      window.location.reload(false);
+      message.success("inventario final generado correctamente");
+    } catch (error) {
+      console.log(error);
+      message.error("contacta al administrador");
+    }
+  };
+
+  const ComprasCero = async () => {
+    try {
+      await DataStore.save(
+        Inventario.copyOf(inventario, updated => {
+          updated.compras = 0;
+        })
+      );
+
+      window.location.reload(false);
+      message.success("inventario final generado correctamente");
+    } catch (error) {
+      console.log(error);
+      message.error("contacta al administrador");
+    }
+  };
+
+  const onComentEncargado = async () => {
+      
+    try {
+          await DataStore.save(
+            Inventario.copyOf(inventario, updated => {
+              updated.comentarioEncargado = inputEncargado;
+            })
+          );
+      window.location.reload();
       } catch (error) {
-        console.log(error);
-        message.error("contacta al administrador");
-      }
-    };
-  
-   const ComprasCero = async () => {
-     try {
-       await DataStore.save(
-         Inventario.copyOf(inventario, updated => {
-           updated.compras = 0;
-         })
-       );
-
-       window.location.reload(false);
-       message.success("inventario final generado correctamente");
-     } catch (error) {
-       console.log(error);
+      console.log(error)
        message.error("contacta al administrador");
-     }
+      }
+     
    };
   
-  
+  const onComentGerente = async () => {
+    try {
+      await DataStore.save(
+        Inventario.copyOf(inventario, updated => {
+          updated.comentarioGerente = inputGerente;
+        })
+      );
+     window.location.reload();
+    } catch (error) {
+        console.log(error);
+        message.error("contacta al administrador");
+    }    
+  };
+
 
   
-
   return (
     <div key={id}>
       {/* <BorrarInventario id={id} /> */}
@@ -161,7 +197,7 @@ function CorteInventario({ id }) {
             </Typography.Text>
             <br />
             <Typography.Text>
-              Fecha inicial: {inventario?.fechaFinConteoFisico}
+              Fecha Final: {inventario?.fechaFinConteoFisico}
             </Typography.Text>
             <Divider />
             <>
@@ -213,7 +249,7 @@ function CorteInventario({ id }) {
                   {inventario?.total > 0 ? (
                     <p>Sobran {inventario?.total}</p>
                   ) : inventario?.total < 0 ? (
-                    <p>Faltan {(-1)*inventario?.total  }</p>
+                    <p>Faltan {-1 * inventario?.total}</p>
                   ) : (
                     <p>cuadra</p>
                   )}
@@ -262,6 +298,46 @@ function CorteInventario({ id }) {
                 <MostrarCompras id={id} />
               </Card>
             )}
+            <Card>
+              {inventario?.compras && (
+                <>
+                  <Typography.Title level={3}>Compras</Typography.Title>
+                  <MostrarComprasTabla id={id} />
+                </>
+              )}
+              <Divider />
+              {!inventario?.comentarioEncargado && (
+                <>
+                  <Form.Item label="Comentario Encargado Inventario">
+                    <Input onChange={e => setInputEncargado(e.target.value)} />
+                  </Form.Item>
+                  <Button
+                    onClick={onComentEncargado}
+                    style={{ marginBottom: 10 }}
+                  >
+                    Guardar Comentario
+                  </Button>
+                </>
+              )}
+
+              <div>Comentario Encargado: {inventario?.comentarioEncargado}</div>
+
+              <Divider />
+              {!inventario?.comentarioGerente && (
+                <>
+                  <Form.Item label="Comentario Gerente Inventario">
+                    <Input onChange={e => setInputGerente(e.target.value)} />
+                  </Form.Item>
+                  <Button
+                    onClick={onComentGerente}
+                    style={{ marginBottom: 10 }}
+                  >
+                    Guardar Comentario
+                  </Button>
+                </>
+              )}
+              <div>Comentario Gerente: {inventario?.comentarioGerente}</div>
+            </Card>
           </Card>
         )}
     </div>

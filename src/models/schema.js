@@ -1086,6 +1086,20 @@ export const schema = {
                         "associatedWith": "inventarioID"
                     }
                 },
+                "comentarioEncargado": {
+                    "name": "comentarioEncargado",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "comentarioGerente": {
+                    "name": "comentarioGerente",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1214,5 +1228,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.4",
-    "version": "bd06de10bbf97d41c08c029b47a1072a"
+    "version": "10e7f844b7ba67e4ef643576ed8d0dcd"
 };

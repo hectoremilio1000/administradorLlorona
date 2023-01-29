@@ -173,6 +173,7 @@ function MostrarCompras({ id }) {
           <Table columns={columns} dataSource={eventoCompra} rowKey={id} />
         </>
       )}
+    
     </div>
   );
 }
